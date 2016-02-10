@@ -1,0 +1,155 @@
+.ach-hl-box{
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+  -moz-box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+  box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+
+  h3{
+    color: $ach-mid-blue;
+    font-size:1.1rem;
+    font-weight:bold;
+  }
+  p{
+    font-size:0.8rem;
+  }
+}
+// // Small devices (landscape phones, 34em and up)
+// @media (min-width: 34em) { ... }
+// // Medium devices (tablets, 48em and up)
+// @media (min-width: 48em) { ... }
+// // Large devices (desktops, 62em and up)
+// @media (min-width: 62em) { ... }
+// // Extra large devices (large desktops, 75em and up)
+// @media (min-width: 75em) { ... }
+
+// // Extra small devices (portrait phones, less than 34em)
+// @media (max-width: 33.9em) { ... }
+// // Small devices (landscape phones, less than 48em)
+// @media (max-width: 47.9em) { ... }
+// // Medium devices (tablets, less than 62em)
+// @media (max-width: 61.9em) { ... }
+// // Large devices (desktops, less than 75em)
+// @media (max-width: 74.9em) { ... }
+
+
+.ach-hotel-box{ 
+  @media (max-width: 33.9em) {
+    text-align:center;
+    img{
+      margin-left: auto;
+      margin-right: auto;
+    }
+  } 
+  @media (max-width: 74.9em) { 
+    margin-bottom:10px;
+  }
+}
+
+.ach-hl-box{
+  margin-bottom:10px;
+}
+
+.hlb-g{
+  h4{
+  color:$brand-primary;
+  font-size:2.1rem;
+  font-weight:bold;
+  margin-bottom:-28px;
+}
+
+
+.ach-sm{
+  font-size:0.7rem;
+  margin-top:-30px;
+}
+  
+}
+
+.ach-hlb-a{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  img{
+    margin:10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+.ach-hlb-b{
+  margin-top:10px;
+  h3{
+    margin-bottom:-1px;
+  }
+  p{
+    margin:-5px 0 0 0;
+  }
+  
+}
+.ach-hlb-c{
+  margin-top:6px;
+  @media (max-width: 47.9em) {
+    text-align:center;
+  } 
+}
+
+.ach-hl-btn{
+   @media (max-width: 47.9em) {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:100%;
+    margin-bottom:6px;
+  }
+}
+
+.hl-ta{
+  padding-top:4px
+}
+
+.ach-result-hotels{
+  font-size:1.2rem;
+  border-top: 1px solid #ccc;  
+  margin:15px 0 0 0;
+  padding: 15px 0 6px 0;
+  p{
+    font-size:0.9rem;
+  };
+}
+
+#ach-filter{
+    border-top: 4px solid $ach-mid-blue;  
+    border-bottom: 3px solid $ach-yellow; 
+    ul{
+      padding:10px 0 10px 0;
+      margin:0;
+    }
+    li{
+      display:inline;
+      font-size:0.9rem;
+      padding-right:45px;
+    }
+}
+
+/*
+  Hotels Filter
+*/
+#hotels-main{
+  border-left: 1px solid #ccc;
+}
+
+#ach-hl-stars{
+  h4{
+    font-size:1.1rem;
+  }
+  h5{
+    font-size:1rem;
+  }
+  ul{
+    padding:0;
+    margin:0 0 0 20px;
+  }
+  li{
+    font-size:0.9rem;
+    padding-bottom:3px;
+  }
+}

@@ -1,0 +1,21 @@
+.ach-preloader{
+	position:absolute;
+	background-color:$ach-blue;
+	z-index:999 !important;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%; 
+}
+.ach-preload-wrap{
+	z-index:999 !important;
+	width: 400px;
+    height: 180px;
+    position: absolute;
+    left: 50%;
+    top: 50%; 
+    margin-left: -150px;
+    margin-top: -150px;
+    text-align:center;
+    color:#fff;
+}

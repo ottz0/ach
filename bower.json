@@ -1,0 +1,26 @@
+{
+  "name": "site",
+  "description": "",
+  "main": "Gruntfile.js",
+  "license": "ISC",
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/assets/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-ui-router": "~0.2.15",
+    "angular": "~1.4.8",
+    "bootstrap": "v4.0.0-alpha",
+    "ngstorage": "~0.3.10",
+    "angular-sanitize": "~1.4.8",
+    "octicons": "~3.3.0",
+    "angular-slick": "~0.2.1"
+  }
+}

@@ -1,0 +1,30 @@
+<div ng-repeat="(key, value) in rooms">
+	<div>
+		{{value.name}}{{$index}}
+		<a class="btn btn-sm btn-info" data-toggle="collapse" href="#hotinfo-{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+    Show room information
+  </a>
+  <a tabindex="0" class="btn btn-lg btn-danger" role="button" data-toggle="popover" data-trigger="focus" title="Dismissible popover" data-content="And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>
+
+	</div>
+	<div class="collapse" id="hotinfo-{{$index}}">
+	  <div class="card card-block">
+	    {{value.message}}
+	  </div>
+	</div>
+</div>
+
+
+
+description: "Standard Room, 2 Single Beds, Non Smoking, Patio"
+descriptionLong: "<strong>2 single beds</strong><br /> 12-sq-foot (1-sq-meter) room, patio with garden views<br /><br /><b>Entertainment</b> - Free WiFi, LCD TV with premium channels<br /><b>Food & Drink</b> - Refrigerator and minibar<br /><b>Bathroom</b> - Private bathroom, shower, free toiletries, and a hair dryer<br /><b>Practical</b> - Cribs/infant beds available on request<br /><b>Comfort</b> - Air conditioning and daily housekeeping<br /><b>Need to Know</b> - No rollaway/extra beds available<br />Non-Smoking, wheelchair accessible<br />"
+
+amenity: "Air conditioning"
+
+
+<button type="button" class="btn btn-primary-outline">Primary</button>
+<button type="button" class="btn btn-secondary-outline">Secondary</button>
+<button type="button" class="btn btn-success-outline">Success</button>
+<button type="button" class="btn btn-info-outline">Info</button>
+<button type="button" class="btn btn-warning-outline">Warning</button>
+<button type="button" class="btn btn-danger-outline">Danger</button>

@@ -1,0 +1,12 @@
+@import "helpers/variables";
+@import "../libs/bootstrap/scss/bootstrap";
+@import "helpers/shared";
+@import "pages/template";
+@import "pages/footer";
+@import "pages/home";
+@import "pages/hotels";
+@import "pages/hotel";
+@import "components/preloader";
+@import "components/search";
+@import "components/datepicker";
+@import "vendor/bootstrap-overrides";

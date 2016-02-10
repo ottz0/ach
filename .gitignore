@@ -1,0 +1,6 @@
+# Default ingnore #
+###################
+src/assets/libs/
+.sass-cache/
+node_modules/
+

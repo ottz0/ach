@@ -1,0 +1,74 @@
+/* 
+  Structure - Sticky Footer
+*/
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+button, a, a:visited, a:focus, a:active, a:hover{
+    outline:0 none !important;
+}
+
+
+#wrap {
+  min-height: 100%;
+  height: auto;
+  /* Negative indent footer by its height */
+  margin: 0 auto -270px;
+  /* Pad bottom by footer height */
+  padding: 0 0 270px;
+}
+
+
+/* 
+  Navigation 
+*/
+.navbar-default {
+  background-color: $ach-blue;
+}
+.navbar-toggler{
+  color: #fff;
+}
+#ach-nav-container{
+    background-color: $ach-blue;
+}
+#ach-logo-xs{
+  margin-top:-40px;
+}
+#ach-nav-strip{
+  height: 6px;
+  background-color: $ach-yellow;
+}
+.nav-pills{
+  padding-top:10px;
+}
+
+.ach-hr{
+  border-style:solid;
+  border-width:thin;
+  border-color:$ach-mid-blue;
+}
+
+
+
+
+.ach-box{
+  -webkit-box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+  -moz-box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+  box-shadow: 0px 0px 3px 1px rgba(214,214,214,1);
+}
+
+.ach-padding{padding:10px;}
+
+.ach-cont-marg{margin-left:15px}
+
+
+
+
+
+
+

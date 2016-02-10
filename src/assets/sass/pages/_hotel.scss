@@ -1,0 +1,135 @@
+/* 
+  Hotel Info
+*/
+.ach-result-hotel{
+  padding-top:20px;
+  font-size:1.2rem;
+  margin:0;
+  p{
+    font-size:0.9rem;
+  };
+}
+
+#hotel-info{
+	padding-top:12px;
+}
+
+#thumb-list{
+	padding:0;
+	margin-top:5px;
+		li{
+			display:inline;
+			list-style-type: none;
+			
+		}
+		img{
+			padding-bottom:5px;
+		}
+}
+
+#hotel-main-tag{
+	@media (min-width: 61.9em) { 
+    padding-top:45px;
+  }
+}
+
+.hotel-sm{
+	font-size:0.9rem;
+}
+
+.ach-outline{
+	border: 3px solid red;
+}
+
+.hotel-thumb{
+	cursor:pointer;
+}
+
+#map{
+	margin-top:-15px;
+}
+
+/* 
+  Availability
+*/
+#avail{
+	position:relative;
+	border-style: solid;
+    border-width: 1px;
+    border-color: $ach-blue;
+}
+#avail-head{
+	background-color:$ach-blue;
+	border-bottom: 5px solid $ach-blue;
+	padding:7px 0 0 10px;
+	h2{
+		font-size:1.3rem;
+		font-weight:bold;
+		color:#fff;
+	}
+}
+
+#avail-dates{
+	border-bottom: 3px solid $ach-yellow; 
+}
+
+.rooms{
+	margin:10px;
+	h3{
+		font-size:1.3rem;
+		font-weight:normal;
+		padding-bottom:6px;
+	}
+	p{
+		padding-top:4px;
+	}
+}
+
+.room-row{
+	margin:10px;
+	border-bottom: 2px solid $gray-lighter;
+	padding-top:15px;
+	padding-bottom:15px;
+}
+
+.room-desc{
+	font-size:1.1rem !important;
+}
+.room-adds{
+	font-size:0.9rem !important; 
+}
+
+.room-sm{
+	font-size:0.7rem !important;
+	color:#818181;
+}
+
+div#value-adds{
+	ul.ng-scope{
+		display:inline;
+		padding:0;
+		margin:0;
+	}
+
+	li{
+		font-size:0.9rem !important; 
+		display:inline;
+		padding-right:5px;
+	}
+	
+}
+
+
+
+
+
+
+
+.hp{
+	margin-bottom:-4px;
+	margin-top:3px;
+}
+
+.hbm{
+	margin:18px 0 10px 0;
+}

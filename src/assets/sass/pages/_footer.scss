@@ -1,0 +1,25 @@
+/* 
+  Footer Styles 
+*/
+.footer {
+  position: absolute;
+  width: 100%;
+
+  /* Set the fixed height of the footer here */
+  background-color: $ach-blue;
+    a, p, ul, li{
+      color: #fff;
+      font-size:14px;
+    }
+    ul{
+      list-style-type:none;
+      padding-left:0;
+    }
+    li{
+      
+    }
+}
+
+.footer-content{
+  padding-top:40px;
+}

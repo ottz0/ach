@@ -1,92 +1,31 @@
-<!-- Search -->
-<div id="search-wrapper">
-    <div ng-include src="'app/shared/search/searchView.html'"></div>
-    <hr class="m-t-0" />
-</div> 
-<!-- /search -->
-<div class="container">
-<p>This is the devb view</p>
-<form ng-submit="getSearchResults()">
-  Enter text and hit enter:
-  <input type="text" ng-model="destination" name="text" />
+<div class="form-group has-success">
+  <label class="form-control-label" for="inputSuccess1">Input with success</label>
+  <input type="text" class="form-control form-control-success" id="inputSuccess1">
+</div>
+<div class="form-group has-warning">
+  <label class="form-control-label" for="inputWarning1">Input with warning</label>
+  <input type="text" class="form-control form-control-warning" id="inputWarning1">
+</div>
+<div class="form-group has-danger">
+  <label class="form-control-label" for="inputDanger1">Input with danger</label>
+  <input type="text" class="form-control form-control-danger" id="inputDanger1">
+</div>
 
-	<div class="col-xs-1 col-sm-1 col-lg-1">
-	  <fieldset class="form-group">
-	    <label class="ach-search" for="children">Children</label>
-	    <select class="form-control" name="numberOfChildren" ng-model="achSearch.numberOfChildren" ng-change="updateChildren()">
-	      <option value="0">0</option>
-	      <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-	    </select>
-	  </fieldset>
-	</div>
-
-	<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child1">
-	  <fieldset class="form-group">
-	    <label class="ach-search" for="children">Children</label>
-	    <select class="form-control" name="child1" ng-model="achSearch.child1">
-	      <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-	    </select>
-	  </fieldset>
-	</div>
-
-	<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child2">
-	  <fieldset class="form-group">
-	    <label class="ach-search" for="children">Children</label>
-	    <select class="form-control" name="child2" ng-model="achSearch.child2">
-	      <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-	    </select>
-	  </fieldset>
-	</div>
-
-	<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child3">
-	  <fieldset class="form-group">
-	    <label class="ach-search" for="children">Children</label>
-	    <select class="form-control" name="child3" ng-model="achSearch.child3">
-	      <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-	    </select>
-	  </fieldset>
-	</div>
-
-	<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child4">
-	  <fieldset class="form-group">
-	    <label class="ach-search" for="children">Children</label>
-	    <select class="form-control" name="child4" ng-model="achSearch.child4">
-	      <option value="1">1</option>
-		  <option value="2">2</option>
-		  <option value="3">3</option>
-		  <option value="4">4</option>
-	    </select>
-	  </fieldset>
-	</div>
-
-
-
-
-
-
-
-
-
-
-{{achSearch.child1}}		  
-
-  
-<br /><br />
-<input type="submit" id="submit" value="Submit" />
-				
-</form>
-
-
+<div class="checkbox has-success">
+  <label>
+    <input type="checkbox" id="checkboxSuccess" value="option1">
+    Checkbox with success
+  </label>
+</div>
+<div class="checkbox has-warning">
+  <label>
+    <input type="checkbox" id="checkboxWarning" value="option1">
+    Checkbox with warning
+  </label>
+</div>
+<div class="checkbox has-danger">
+  <label>
+    <input type="checkbox" id="checkboxDanger" value="option1">
+    Checkbox with danger
+  </label>
 </div>

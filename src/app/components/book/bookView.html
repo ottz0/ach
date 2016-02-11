@@ -1,0 +1,57 @@
+<div class="container">
+	<div id="hotel-info" class="row">
+		<div id="hotel-main-tag" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ach-outline">	
+<h1>This is the view </h1>
+{{hello}}
+		</div>
+		<div id="hotel-main-tag" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ach-outline">	
+			<h1>Secure booking</h1>
+				{{hello}}
+				<h2>Room details</h2>
+
+				<!-- Start form -->	
+				<form ng-submit="booking(bookingForm.$valid)" novalidate="novalidate" name="bookingForm">
+
+				<div class="form-group has-danger">
+					  <label class="form-control-label" for="inputSuccess1">Input with success</label>
+					  <input type="text" class="form-control form-control-success" id="inputSuccess1">
+					</div>
+
+
+
+				  <fieldset class="form-group" ng-class="{'has-success':true}">
+				    <label for="firstName">First name</label>
+				   		 <input type="text" 
+				   		 		ng-model="formData.firstName" 
+				   		 		name="firstName"
+				   		 		id="firstName"
+				   		 		class="form-control" 
+				   		 		required="required" 
+				   		 		placeholder="First Name">
+				    <small class="text-muted">We'll never share your email with anyone else.</small>
+				  </fieldset>
+				  <fieldset class="form-group">
+				    <label for="lastName">Last name</label>
+				    	<input	type="text" 
+				    		  	ng-model="formData.lastName" 
+				   		 	  	name="lastName"
+				   		 	  	id="lastName"
+				   		 		class="form-control" 
+				   		 		placeholder="Last Name">
+				  </fieldset>
+				  <div class="form-group row">
+				    <div class="col-sm-offset-2 col-sm-10">
+				      <button type="submit" class="btn btn-primary">Sign in</button>
+				    </div>
+				  </div>
+				</form>	
+
+
+
+		</div>
+	</div>
+</div>
+
+<pre>
+    {{ bookingForm | json }}{{ tt }}
+</pre>

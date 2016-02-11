@@ -35,6 +35,15 @@
                 // }
             })
 
+            .state('book', { 
+                title: 'Book page',
+                url: '/book',
+                controller: 'BookController',
+                templateUrl: 'app/components/book/bookView.html',
+                // params:{
+                //     hotelId:{key:'value'},
+                // }
+            })
 
             .state('dev', { 
                 title: 'Dev page',

@@ -82,6 +82,12 @@
         };
         $scope.hotelRoomAvailability();
 
+        
+        //Sets room type from booking button
+        $scope.setHotelBookingDetails = function(roomDetails, hotelInformation){
+            return hotelFactory.setHotelBookingDetails(roomDetails, hotelInformation);
+        };
+
 	};
 
 

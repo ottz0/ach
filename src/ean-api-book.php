@@ -3,7 +3,10 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 
-	$postData = 'https://book.api.ean.com/ean-services/rs/hotel/v3/res';
+	//$response = file_get_contents("php://input");
+	$postData= 'https://book.api.ean.com/ean-services/rs/hotel/v3/res';
+
+	//echo $response;
 
     /*
     	Required EAN parameters
@@ -19,26 +22,28 @@
 		customerIpAddress
 		customerUserAgent
 
-	*/
+	*/    	
 
-	 /*
-    	Form Data
-
-	*/
+	//Form Search session
     $hotelId = '106347';
     $arrivalDate = '7/12/2016';
     $departureDate = '7/14/2016';
     $supplierType = 'E';
+    $room1 = '2,5,7';
+    
+
+    
+	//Booking button
+    $bedTypeId = '23';
     $rateKey = 'af00b688-acf4-409e-8bdc-fcfc3d1cb80c';
     $roomTypeCode = '198058';
     $rateCode = '484072';
     $chargeableRate = '231.18';
-    $room1 = '2,5,7';
-    $numberOfAdults = '2';
 
-    $firstName = 'test booking';
-    $lastName = 'test booking';
-    $bedTypeId = '23';
+
+    ///Booking form
+    $room1FirstName = 'test';
+	$room1LastName = 'testers';
     $smokingPreference = 'NS';
     $email = 'test@travelnow.com';
     $homePhone = '2145370159';
@@ -49,15 +54,15 @@
 	$countryCode='US';
 	$postalCode='98004';
 
+    
+    //Credit card
+	$firstName = 'test booking';
+    $lastName = 'test booking';
     $creditCardType='CA';
 	$creditCardNumber='5401999999999999';
 	$creditCardIdentifier='123';
 	$creditCardExpirationMonth='11';
 	$creditCardExpirationYear='2016';
-
-	//Ean requuired
-	$userAgent = $_SERVER['HTTP_USER_AGENT'];
-    $ip = $_SERVER['REMOTE_ADDR'];
 
 
     //Ean constants
@@ -67,6 +72,10 @@
    	$MINOR_REV = '30';
 	$LOCAL = 'en_US';
 	$CURRENCY_CODE = 'AUD';
+
+	//Ean requuired
+	$userAgent = $_SERVER['HTTP_USER_AGENT'];
+    $ip = $_SERVER['REMOTE_ADDR'];
 
 
 	//use latest minorRev 30
@@ -88,10 +97,10 @@
 	$url .= '&rateCode='.$rateCode;
 	$url .= '&chargeableRate='.$chargeableRate;
 	$url .= '&room1='.$room1;
-	$url .= '&numberOfAdults='.$numberOfAdults;
-	
-	$url .= '&firstName='.$firstName;
-	$url .= '&lastName='.$lastName;
+	$url .= '&room1FirstName='.$room1FirstName;
+	$url .= '&room1LastName='.$room1LastName;
+
+
 	$url .= '&bedTypeId='.$bedTypeId;
 	$url .= '&smokingPreference='.$smokingPreference;
 	$url .= '&email='.$email;
@@ -103,17 +112,19 @@
 	$url .= '&countryCode='.$countryCode;
 	$url .= '&postalCode='.$postalCode;
 
+	
+	//Credit card
+	$url .= '&firstName='.$firstName;
+	$url .= '&lastName='.$lastName;
 	$url .= '&creditCardType='.$creditCardType;
 	$url .= '&creditCardNumber='.$creditCardNumber;
 	$url .= '&creditCardIdentifier='.$creditCardIdentifier;
 	$url .= '&creditCardExpirationMonth='.$creditCardExpirationMonth;
 	$url .= '&creditCardExpirationYear='.$creditCardExpirationYear;
+	
 
 	$url .= '&customerIpAddress='.$ip;
 	$url .= '&customerUserAgent='.$userAgent;
-
-
-	
 
 
 	$ch = curl_init();
@@ -126,9 +137,6 @@
 
 	$response = curl_exec($ch);
 	curl_close($ch);
-	
-
-
 
 	echo $response;
 	

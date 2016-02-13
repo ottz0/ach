@@ -1,6 +1,6 @@
 (function(){
 
-	var app = angular.module('achApp', ['ui.router', 'ngStorage', 'ngSanitize', 'angularSpinners', 'slugifier', 'angular-carousel', 'ngMap']);
+	var app = angular.module('achApp', ['ui.router', 'ngStorage', 'ngSanitize', 'angularSpinners', 'slugifier', 'ngMap', 'jcs-autoValidate']);
 
 	app.config(function ($stateProvider, $locationProvider) {
 
@@ -36,7 +36,7 @@
             })
 
             .state('book', { 
-                title: 'Book page',
+                title: 'Book',
                 url: '/book',
                 controller: 'BookController',
                 templateUrl: 'app/components/book/bookView.html',

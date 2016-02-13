@@ -1,6 +1,6 @@
 (function(){
 
-	var BookController = function($scope, $http, $httpParamSerializer){
+	var BookController = function($scope, bookFactory){
 
 		/*
 
@@ -38,46 +38,24 @@
 		    $chargeableRate = '231.18';
 		    $room1 = '2,5,7';
 		    $numberOfAdults = '2';
-		    
-
-
 			$bedTypeId = '23';
 
 
-			//BOOKING FORM
 	
-		    $firstName = 'test booking';
-		    $lastName = 'test booking';		    
-		    $email = 'test@travelnow.com';
-		    $homePhone = '2145370159';
-		    $workPhone = '2145370159';
-		    $address1='travelnow';
-			$city='Seattle';
-			$stateProvinceCode='WA';
-			$countryCode='US';
-			$postalCode='98004';
-			$smokingPreference = 'NS';
 		    
-
-		    $creditCardType='CA';
-			$creditCardNumber='5401999999999999';
-			$creditCardIdentifier='123';
-			$creditCardExpirationMonth='11';
-			$creditCardExpirationYear='2016';
 		*/
 		$scope.formData = {};
 		
-		$scope.booking = function(valid){
+		$scope.BookingForm = function(){
 
-			if (valid){
-				console.log('It is valid');
-			}
-			else{
-				console.log('It is not valid');
-			}
-
+			var BookFormData = $scope.formData;
+			//return checkoutFactory.getCheckoutInformation(checkoutData);
+			checkoutFactory.getBookingInformation(bookingFormData);
+        		
+		
 
 
+        	return;
 
 			// var ac = {
 			// 	firstName:$scope.formData.firstName,
@@ -89,7 +67,7 @@
 			//$scope.tt = $httpParamSerializer(ac);
 			//$scope.appForm.dataSubmitted       = $httpParamSerializer($scope.appForm.data);
 
-		}
+		};
 
 
 		// $scope.bookingForm = function(){
@@ -103,7 +81,7 @@
 
 	};
 
-	BookController.$inject = ['$scope', '$http', '$httpParamSerializer'];
+	BookController.$inject = ['$scope', 'bookFactory'];
 
     angular.module('achApp')
       .controller('BookController', BookController);

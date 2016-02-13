@@ -1,25 +1,19 @@
 <div class="container">
-	<div id="hotel-info" class="row">
-		<div id="hotel-main-tag" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ach-outline">	
-<h1>This is the view </h1>
-{{hello}}
-		</div>
-		<div id="hotel-main-tag" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ach-outline">	
-			<h1>Secure booking</h1>
-				{{hello}}
+<div>
+	<h1>Your booking details</h1>
+</div>
+	<div id="hotel-booking" class="row">
+		<aside id="booking-main-tag" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 ach-outline">	
+				<h4>Your reservation summary</h4>
+		</aside>
+		<div id="booking-form" class="col-xs-12 col-sm-12 col-md-8 col-lg-8 ach-outline">	
+			<h4>Secure booking</h4>
 				<h2>Room details</h2>
 
 				<!-- Start form -->	
-				<form ng-submit="booking(bookingForm.$valid)" novalidate="novalidate" name="bookingForm">
+				<form ng-submit="bookingForm()" novalidate="novalidate">
 
-				<div class="form-group has-danger">
-					  <label class="form-control-label" for="inputSuccess1">Input with success</label>
-					  <input type="text" class="form-control form-control-success" id="inputSuccess1">
-					</div>
-
-
-
-				  <fieldset class="form-group" ng-class="{'has-success':true}">
+				  <fieldset class="form-group">
 				    <label for="firstName">First name</label>
 				   		 <input type="text" 
 				   		 		ng-model="formData.firstName" 
@@ -28,7 +22,6 @@
 				   		 		class="form-control" 
 				   		 		required="required" 
 				   		 		placeholder="First Name">
-				    <small class="text-muted">We'll never share your email with anyone else.</small>
 				  </fieldset>
 				  <fieldset class="form-group">
 				    <label for="lastName">Last name</label>
@@ -36,12 +29,26 @@
 				    		  	ng-model="formData.lastName" 
 				   		 	  	name="lastName"
 				   		 	  	id="lastName"
-				   		 		class="form-control" 
+				   		 		class="form-control"
+				   		 		required="required" 
 				   		 		placeholder="Last Name">
 				  </fieldset>
+
+				  <fieldset class="form-group">
+				    <label for="lastName">Last name</label>
+				    	<input	type="email" 
+				    		  	ng-model="formData.email" 
+				   		 	  	name="email"
+				   		 	  	id="email"
+				   		 		class="form-control"
+				   		 		required="required" 
+				   		 		placeholder="Email">
+				  </fieldset>
+				
+
 				  <div class="form-group row">
-				    <div class="col-sm-offset-2 col-sm-10">
-				      <button type="submit" class="btn btn-primary">Sign in</button>
+				    <div class="col-sm-10">
+				      <button type="submit" class="btn btn-warning">Book now</button>
 				    </div>
 				  </div>
 				</form>	

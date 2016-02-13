@@ -256,14 +256,17 @@
 						<div class="hlb-g">
 							<h4 class="ach-price">${{room.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}</h4><br />
 							<span class="ach-sm">(AUD) Total Price</span><br />
-						<a type="button" class="ach-hl-btn btn btn-warning">Book now</a>
+						<a type="button" 
+						   class="ach-hl-btn btn btn-warning" 
+						   ng-click="setHotelBookingDetails(room, hotel)">
+						   Book now
+						</a>
 						</div>
-					</div>
-				
+					</div>	
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 
-{{rooms}}
+{{rooms | json}}

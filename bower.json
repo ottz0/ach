@@ -17,10 +17,14 @@
   "dependencies": {
     "angular-ui-router": "~0.2.15",
     "angular": "~1.4.8",
-    "bootstrap": "v4.0.0-alpha",
+    "bootstrap": "v4.0.0-alpha.2",
     "ngstorage": "~0.3.10",
     "angular-sanitize": "~1.4.8",
     "octicons": "~3.3.0",
-    "angular-slick": "~0.2.1"
+    "angular-slick": "~0.2.1",
+    "angular-auto-validate": "^1.19.3"
+  },
+  "devDependencies": {
+    "tether": "^1.1.1"
   }
 }

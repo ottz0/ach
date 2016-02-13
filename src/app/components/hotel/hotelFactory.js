@@ -54,6 +54,13 @@
 			return factory.eanApiRequest(data);		
 		};
 
+		factory.setHotelBookingDetails = function(roomDetails, hotelInformation){
+            //Set hotelInformation
+            $storage.achHotelInformation = JSON.stringify(hotelInformation);
+            //Set roomDetails
+            $storage.achRoomDetails = JSON.stringify(roomDetails);
+		};
+
 
 
 		/*

@@ -1,7 +1,8 @@
 (function(){
 
-	var DevController = function($scope, $http, devFactory, $timeout){
-		$scope.loading = true;
+	var DevController = function($scope, $http, devFactory, $timeout, spinnerService){
+		$scope.loading = false;
+		$scope.moreResSpin = true;
 		$scope.title = 'Dev Page';
 		var messages = devFactory.list;
 		console.log(messages.myMessage);
@@ -31,7 +32,7 @@
 	};
 
 
-	DevController.$inject = ['$scope', '$http', 'devFactory', '$timeout'];
+	DevController.$inject = ['$scope', '$http', 'devFactory', '$timeout', 'spinnerService'];
 
     angular.module('achApp')
       .controller('DevController', DevController);

@@ -1,6 +1,6 @@
 (function(){
 
-	var hotelFactory = function($http, $stateParams, $sessionStorage, utilsFactory){
+	var hotelFactory = function($http, $location, $stateParams, $sessionStorage, utilsFactory){
 
 		var factory = {};
 		$storage = sessionStorage;	
@@ -26,6 +26,7 @@
 
 			//Local storage only supports strings - Parse json from storage
 			var searchResults = JSON.parse($storage.achSearch);
+			var customerData = JSON.parse($storage.achMoreResults);
 			var numberOfChildren = searchResults.numberOfChildren;
 			var childAges = searchResults.childAges;
 			var roomGroup = searchResults.numberOfAdults;
@@ -39,7 +40,6 @@
 				var roomGroup = searchResults.numberOfAdults+','+childArray;
 			}
 			
-			//Extract dates - Switch dd/mm
 			var arrivalDate = utilsFactory.dateFactory(searchResults.arrivalDate);
 			var departureDate = utilsFactory.dateFactory(searchResults.departureDate);
 			var destinationString = encodeURIComponent(searchResults.destination);	
@@ -49,6 +49,7 @@
                 +'&departureDate='+departureDate
                 +'&room1='+roomGroup
                 +'&includeRoomImages=true'
+                +'&customerSessionId='+customerData.customerSessionId
                 +'&options=ROOM_TYPES,ROOM_AMENITIES';
 			
 			return factory.eanApiRequest(data);		
@@ -59,6 +60,7 @@
             $storage.achHotelInformation = JSON.stringify(hotelInformation);
             //Set roomDetails
             $storage.achRoomDetails = JSON.stringify(roomDetails);
+            $location.path('/book');
 		};
 
 

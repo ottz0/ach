@@ -1,6 +1,38 @@
 (function(){
 
-	var BookController = function($scope, bookFactory){
+	var BookController = function($scope, bookFactory, $sessionStorage){
+
+		
+		$storage = sessionStorage;
+		$scope.hotelInformation = JSON.parse($storage.achHotelInformation);
+		$scope.roomDetails = JSON.parse($storage.achRoomDetails);
+		$scope.moreResults = JSON.parse($storage.achMoreResults);
+		$scope.achSearch = JSON.parse($storage.achSearch);
+		$scope.roomPrices = $scope.roomDetails.RateInfos.RateInfo.ChargeableRateInfo;
+		$scope.formData = {};
+
+		
+		//ratekey -y
+		//roomTypeCode
+		//rateCode - y
+
+		//ratekey
+		//RoomCode['@roomCode']
+		//RoomType['@roomTypeId']
+
+
+		//Nightly rate price per returned object or array
+		(function (){
+			var nightPrice = $scope.roomPrices.NightlyRatesPerRoom['@size'];
+
+			if(nightPrice == 1){
+				$scope.nightPrice = true;
+			}else{
+				$scope.nightPriceMulti = true;
+			}
+		}());
+
+		console.log($scope.roomDetails);
 
 		/*
 
@@ -44,7 +76,40 @@
 	
 		    
 		*/
-		$scope.formData = {};
+		$scope.reservationSummaray = function(){
+        	bookFactory.reservationSummary();
+        		// .then(function(data){
+        		// 	console.log(data);
+        		// 	$scope.hotelAvail = data;
+        		// 	console.log($scope.hotelAvail);
+
+        		//})
+        	return;
+        };
+        $scope.reservationSummaray();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
 		
 		$scope.BookingForm = function(){
 
@@ -77,11 +142,11 @@
 		// }
 		//$scope.bookingForm();
 
-		
+		//'jcs-autoValidate'
 
 	};
 
-	BookController.$inject = ['$scope', 'bookFactory'];
+	BookController.$inject = ['$scope', 'bookFactory','$sessionStorage'];
 
     angular.module('achApp')
       .controller('BookController', BookController);

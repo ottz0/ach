@@ -1,0 +1,66 @@
+#booking-form{
+	label{
+		margin-bottom:-25px;
+		color:$ach-mid-blue;
+	}
+}
+
+#hotel-booking{
+	h2{
+		font-weight:bold;
+		font-size:1.4rem;
+	}
+}
+
+#res-details{
+	background-image: url("../img/bg-pattern.png");
+	background-repeat: repeat;
+	width:100%;
+	border-bottom-style:solid;
+	border-bottom-width:5px;
+	border-color:#aaa7a7;
+}
+
+
+.booking-head{
+	font-size:1.2rem;
+	line-height:18px;
+}
+.booking-sub{
+	font-size:0.9rem;
+}
+.booking-small{
+	font-size:0.8rem;
+}
+
+.p-marg{
+	margin-bottom:-7px;
+}
+.p-m-marg{
+	margin-bottom:-3px;
+}
+
+#room-price-details{
+	p{
+		font-size:0.9rem;
+		margin-bottom:-1px;
+	}
+}
+
+
+#res-details{
+	p{
+		//font-size:0.9rem;
+		margin-bottom:-3px;
+	}
+}
+
+#booking-details{
+	p{
+		font-size:0.9rem;
+	}
+}
+
+#booking-total{
+	font-size:2.1rem;
+}

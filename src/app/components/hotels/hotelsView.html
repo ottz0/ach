@@ -60,10 +60,12 @@
 							<p class="ach-sm" style="padding-top:7px;">TripAdvisor reviews: {{hotel.tripAdvisorReviewCount}}</p>
 						</div>
 
-						<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 ach-hlb-c text-right">
+						<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 ach-hlb-c text-xs-center text-md-right">
 							<div class="hlb-g">
-								<h4 class="ach-price">${{hotel.lowRate | number:0}}</h4><br />
-								<span class="ach-sm">Avg. Nighly rate</span><br />
+								<h4 class="ach-price">
+								${{hotel.RoomRateDetailsList.RoomRateDetails.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}
+								</h4><br />
+								<span class="ach-sm">(AUD) Total Price</span><br />
 							<a type="button" ui-sref="hotel({hotelId:hotel.hotelId, hotelName:(hotel.name | slugify)})" target="_self" class="ach-hl-btn btn btn-warning">Select</a>
 							</div>
 						</div>
@@ -74,7 +76,7 @@
 			</div>
 			<div class="clearfix"></div>
 			<div ng-show="moreResults">
-				<spinner name="mySpinner" class="text-center" show="moreResSpin" img-src="assets/img/preload.gif"></spinner>
+				<spinner name="mySpinner" class="text-xs-center" show="moreResSpin" img-src="assets/img/preload.gif"></spinner>
 				<span us-spinner spinner-key="spinner-1"></span>
 				<a type="button" class="btn btn-block btn-warning btn-lg" ng-click="moreResults()">View more hotels</a>
 			</div>

@@ -3,7 +3,19 @@
 	var bookFactory = function($http, $stateParams, $httpParamSerializer, $sessionStorage, utilsFactory){
 
 		var factory = {};
-		$storage = sessionStorage;	
+
+
+
+		/*
+			Get hotelId and build url string
+		*/
+		factory.reservationSummary = function(){
+			//var data = "cool";
+			//return data
+			//console.log(hotelInformation);
+
+			//return console.log(data);
+		}
 
 		
 		/*
@@ -36,8 +48,6 @@
 			}
 			return factory.eanApiCheckoutRequest(data);
 		};
-
-
 		
 
 

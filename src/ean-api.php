@@ -17,8 +17,25 @@
 		customerUserAgent
 
 	*/
+
+	/* test data hotels
+	var data = 'http://api.ean.com/ean-services/rs/hotel/v3/avail?'
+                +'hotelId='+hotelId
+                +'&arrivalDate='+arrivalDate
+                +'&departureDate='+departureDate
+                +'&room1='+roomGroup
+                +'&includeRoomImages=true'
+                +'&customerSessionId='+customerData.customerSessionId
+                +'&options=ROOM_TYPES,ROOM_AMENITIES';
+
+
+
+	*/
+    //$postData="http://api.ean.com/ean-services/rs/hotel/v3/avail?&hotelId=569743&arrivalDate=02/17/2016&departureDate=02/18/2016&room1=2&includeRoomImages=true";
+
+
 	//Ean requuired
-	$userAgent = $_SERVER['HTTP_USER_AGENT'];
+	$userAgent = urlencode($_SERVER['HTTP_USER_AGENT']);
     $ip = $_SERVER['REMOTE_ADDR'];
 
 
@@ -38,8 +55,8 @@
 	$url .= '&locale='.$LOCAL;
 	$url .= '&apiExperience='.$API_EXPERIENCE;
 	$url .= '&currencyCode='.$CURRENCY_CODE;
-	//$url .= '&customerIpAddress='.$ip;
-	//$url .= '&customerUserAgent='.$userAgent;
+	$url .= '&customerIpAddress='.$ip;
+	$url .= '&customerUserAgent='.$userAgent;
 	//using the cache returns results much faster
 	$url .= '&supplierCacheTolerance=MED_ENHANCED';
 
@@ -49,11 +66,6 @@
 	curl_setopt( $ch, CURLOPT_HTTPHEADER, $header );
 	curl_setopt($ch,CURLOPT_ENCODING , "gzip");
 	curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'GET');
-	
-	//curl_setopt($ch, CURLOPT_POST, 1);
-	//curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
-
-
 	curl_setopt( $ch, CURLOPT_URL, $url );
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );
 

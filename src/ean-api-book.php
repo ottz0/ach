@@ -74,7 +74,7 @@
 	$CURRENCY_CODE = 'AUD';
 
 	//Ean requuired
-	$userAgent = $_SERVER['HTTP_USER_AGENT'];
+	$userAgent = urlencode($_SERVER['HTTP_USER_AGENT']);
     $ip = $_SERVER['REMOTE_ADDR'];
 
 

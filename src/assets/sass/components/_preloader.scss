@@ -19,3 +19,18 @@
     text-align:center;
     color:#fff;
 }
+
+.ach-preloader-white{
+	position:absolute;
+	background-color: rgba(255,255,255,0.9);
+	z-index:999 !important;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%; 
+	img{
+		position:absolute;
+		top:50%;
+		left:50%;
+	}
+}

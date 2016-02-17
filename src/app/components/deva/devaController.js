@@ -1,6 +1,8 @@
 (function(){
 
 	var DevaController = function($scope, spinnerService){
+
+		$scope.myVar = 'breast';
 		
 
 		$scope.rooms = [

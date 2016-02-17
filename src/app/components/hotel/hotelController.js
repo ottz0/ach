@@ -1,7 +1,7 @@
 (function(){
 
 	var HotelController = function($scope, $stateParams, $sessionStorage, $timeout, hotelFactory, utilsFactory, NgMap){
-
+        $scope.loading = true;
         $storage = sessionStorage;
         $scope.achSearch = JSON.parse($storage.achSearch);
 
@@ -73,7 +73,7 @@
                     $scope.rooms = data.HotelRoomAvailabilityResponse.HotelRoomResponse;
                     console.log($scope.rooms);
                     $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'];
-        			
+        			$scope.loading = false;
 
                     //console.log();
                     //console.log($scope.rooms[0].RateInfos.RateInfo.ChargableRateInfo['@total']);

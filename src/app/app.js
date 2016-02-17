@@ -1,6 +1,6 @@
 (function(){
 
-	var app = angular.module('achApp', ['ui.router', 'ngStorage', 'ngSanitize', 'angularSpinners', 'slugifier', 'ngMap', 'jcs-autoValidate']);
+	var app = angular.module('achApp', ['ui.router', 'ngStorage', 'ngSanitize', 'angularSpinners', 'slugifier', 'ngMap']);
 
 	app.config(function ($stateProvider, $locationProvider) {
 

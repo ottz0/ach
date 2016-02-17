@@ -1,0 +1,89 @@
+<aside id="booking-main-tag" class="col-xs-12 col-sm-12 col-md-4 col-lg-4 p-b-2">	
+	<div class="ach-stroke-box">
+		<h2>Reservation summary</h2>
+		<div class="header-strip"></div>
+		<div id="res-details">
+			<div class="p-a-1">		
+				<div>
+					<p class="booking-head font-weight-bold" ng-bind-html="hotelInformation.name"></p>
+					<p class="booking-small p-marg">{{hotelInformation.address1}} {{hotelInformation.city}}, {{hotelInformation.stateProvinceCode}}</p>
+					<img class="img-responsive hl-ta" src="{{hotelInformation.hotelRating}}">
+				</div>
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- Google Map -->
+						<div id="map" class="m-t-1">
+							<ng-map zoom="13" center="{{hotelInformation.latitude}}, {{hotelInformation.longitude}}" style="max-height:125px;">
+							    <marker position="[{{hotelInformation.latitude}}, {{hotelInformation.longitude}}]" title="{{hotelInformation.name}}"></marker>
+							</ng-map>
+						</div>
+						<!-- /Google Map -->
+						<div id="booking-details" class="m-t-1">
+							<p><strong>Arrive: </strong>{{achSearch.arrivalDate}}</p>
+							<p><strong>Depart: </strong>{{achSearch.departureDate}}</p>
+							<p><strong>Adults: </strong>{{achSearch.numberOfAdults}}</p>
+							<p><strong>Children: </strong>{{achSearch.numberOfChildren}}</p>
+							<p><strong>Room type: </strong>
+							{{roomDetails.RoomType.description}}</p>
+							<p><strong>Bed details: </strong>{{roomDetails.BedTypes.BedType.description}}</p>					
+								<span id="b-detail" class="octicon octicon-chevron-down"></span>
+								<a href="#room-details" data-toggle="collapse">Show room details</a>									
+								<div id="room-details"class="collapse booking-small" ng-bind-html="roomDetails.RoomType.descriptionLong">
+							</div>
+						</div>
+					</div>
+				</div>						
+			</div>
+		</div>
+		<div class="p-a-1">
+			<p class="booking-head font-weight-bold p-m-marg">Rate summary &amp; total</p>
+			<p class="booking-small">All prices in Australian Dollars (AUD)</p>
+		<div id="room-price-details">
+		
+		  	<!-- Nightly Prices -->
+			<div ng-show="nightPrice">
+				<div class="row">
+					<div class="col-xs-8">
+						<p>Night {{$index+1}}:</p>
+					</div>
+					<div class="col-xs-4">
+						<p class="text-xs-right">${{roomPrices.NightlyRatesPerRoom.NightlyRate['@baseRate']}}</p>
+					</div>
+				</div>
+			</div>
+
+			<div ng-show="nightPriceMulti" ng-repeat="roomPrice in roomPrices.NightlyRatesPerRoom.NightlyRate">
+				<div class="row">
+					<div class="col-xs-8">
+						<p>Night {{$index+1}}:</p>
+					</div>
+					<div class="col-xs-4">
+						<p class="text-xs-right">${{roomPrice['@baseRate']}}</p>
+					</div>
+				</div>
+			</div>
+			<!-- /Nightly Prices -->
+
+			<hr>
+				<div class="row">
+					<div class="col-xs-8">
+						<p>Fees &amp; taxes:</p>
+					</div>
+					<div class="col-xs-4">
+						<p class="text-xs-right">${{roomPrices['@surchargeTotal']}}</p>
+					</div>
+				</div>
+				<hr>
+				<div class="row">
+					<div class="col-xs-6">
+						<p class="font-weight-bold">Total to Pay now</p>
+					</div>
+					<div class="col-xs-6">
+						<h3 id="booking-total" class="text-xs-right"><strong>${{roomPrices['@total']}}</strong></h3>
+					</div>
+				</div>
+		</div>
+
+		</div>
+	</div>
+</aside>

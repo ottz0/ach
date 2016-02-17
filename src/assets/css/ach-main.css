@@ -5915,6 +5915,13 @@ a.bg-danger:focus, a.bg-danger:hover {
   display: none !important;
 }
 
+.ach-stroke-box {
+  border-style: solid;
+  border-width: 8px;
+  border-color: #f4f2f2;
+  padding: 15px;
+}
+
 .ach-pointer {
   cursor: pointer;
 }
@@ -6003,12 +6010,20 @@ button, a, a:visited, a:focus, a:active, a:hover {
   margin-left: 15px;
 }
 
+.header-strip {
+  height: 5px;
+  width: 100%;
+  background-color: #ffcc00;
+  margin-bottom: 17px;
+}
+
 /* 
   Footer Styles 
 */
 .footer {
   position: absolute;
   width: 100%;
+  height: 270px;
   /* Set the fixed height of the footer here */
   background-color: #0f467c;
 }
@@ -6028,7 +6043,9 @@ button, a, a:visited, a:focus, a:active, a:hover {
 div.hero {
   background: url("../img/test-home-hero.jpg") no-repeat center center;
   background-size: cover;
-  min-height: 60%;
+  position: absolute;
+  height: 100%;
+  width: 100%;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -6060,7 +6077,7 @@ div.hero {
   font-weight: bold;
 }
 .ach-hl-box p {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 
 @media (max-width: 33.9em) {
@@ -6145,7 +6162,7 @@ div.hero {
   padding: 15px 0 6px 0;
 }
 .ach-result-hotels p {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 #ach-filter {
@@ -6193,7 +6210,7 @@ div.hero {
   margin: 0;
 }
 .ach-result-hotel p {
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 #hotel-info {
@@ -6311,6 +6328,63 @@ div#value-adds li {
   margin: 18px 0 10px 0;
 }
 
+#booking-form label {
+  margin-bottom: -25px;
+  color: #2973ba;
+}
+
+#hotel-booking h2 {
+  font-weight: bold;
+  font-size: 1.4rem;
+}
+
+#res-details {
+  background-image: url("../img/bg-pattern.png");
+  background-repeat: repeat;
+  width: 100%;
+  border-bottom-style: solid;
+  border-bottom-width: 5px;
+  border-color: #aaa7a7;
+}
+
+.booking-head {
+  font-size: 1.2rem;
+  line-height: 18px;
+}
+
+.booking-sub {
+  font-size: 0.9rem;
+}
+
+.booking-small {
+  font-size: 0.8rem;
+}
+
+.p-marg {
+  margin-bottom: -7px;
+}
+
+.p-m-marg {
+  margin-bottom: -3px;
+}
+
+#room-price-details p {
+  font-size: 0.9rem;
+  margin-bottom: -1px;
+}
+
+#res-details p {
+  margin-bottom: -3px;
+}
+
+#booking-details p {
+  font-size: 0.9rem;
+}
+
+#booking-total {
+  font-size: 2.1rem;
+}
+
 .ach-preloader {
   position: absolute;
   background-color: #0f467c;
@@ -6332,6 +6406,21 @@ div#value-adds li {
   margin-top: -150px;
   text-align: center;
   color: #fff;
+}
+
+.ach-preloader-white {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.9);
+  z-index: 999 !important;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+.ach-preloader-white img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
 }
 
 .ach-search {
@@ -6551,7 +6640,11 @@ div#value-adds li {
 }
 
 h1, h2, h3 {
-  color: #2973ba;
+  color: #0f467c;
+}
+
+h2 {
+  font-size: 1.7rem;
 }
 
 /* 

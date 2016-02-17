@@ -1,3 +1,4 @@
+<div ng-show="loading" ng-include src="'app/shared/preloader.html'"></div>
 <div class="container">
 	<div class="ach-result-hotel container">
 		<p><strong><a href back-button><span class="octicon octicon-chevron-left"></span> Back to search results</a></strong> | <strong>Arrival:</strong> {{achSearch.arrivalDate}} - <strong>Depart:</strong> {{achSearch.departureDate}} : <strong>Adults:</strong> {{achSearch.numberOfAdults}} - <strong>Children:</strong> {{achSearch.numberOfChildren}} | <a class="ach-pointer" scroll-to-item scroll-to="#avail">Change</a></p>
@@ -22,10 +23,10 @@
 				</div>
 			</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ach-hlb-c text-right">
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ach-hlb-c text-xs-center text-md-right">
 				<div class="hlb-g">
 					<h4 class="ach-price">${{lowestPrice | number:0}}</h4><br />
-					<span class="ach-sm">Avg. Nighly rate</span><br />
+					<span class="ach-sm">(AUD) Total Price</span><br />
 				<a type="button" class="ach-hl-btn btn btn-warning" scroll-to-item scroll-to="#avail">Book now</a>
 				</div>
 			</div>			
@@ -236,11 +237,11 @@
 			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box" ng-repeat="room in rooms">
 				<div class="ach-hotel-box row m-b-sm">
 					
-					<div class="col-xs-12 col-sm-5 col-md-2 col-lg-2 ach-hlb-a">
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 ach-hlb-a">
 						<img class="img-responsive" ng-src="{{(room.RoomImages.RoomImage|| [] ).length ? room.RoomImages.RoomImage[0].url : 'assets/img/hotel-no-image.gif'}}" />
 					</div>
 					
-					<div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 ach-hlb-b">
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 ach-hlb-b">
 						<h3>{{room.RoomType.description}}</h3>
 						<p class="room-desc">{{room.BedTypes.BedType.description}}</p>
 							<p class="room-adds">{{room.ValueAdds.ValueAdd.description}}</p>
@@ -252,7 +253,7 @@
 							<p class="room-sm" ng-bind-html="room.RateInfos.RateInfo.cancellationPolicy"></p>
 					</div>
 
-					<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 ach-hlb-c text-right">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 ach-hlb-c text-xs-center text-md-right">
 						<div class="hlb-g">
 							<h4 class="ach-price">${{room.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}</h4><br />
 							<span class="ach-sm">(AUD) Total Price</span><br />
@@ -268,5 +269,3 @@
 		</div>
 	</div>
 </div>
-
-{{rooms | json}}

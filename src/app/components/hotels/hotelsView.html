@@ -18,7 +18,7 @@
 			<div ng-include src="'app/components/hotels/aside-filter.html'"></div>	
 		</aside>
 
-		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 p-b-lg">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 p-b-2">
 			<h2>Results for hotels in {{achSearch.destination}}</h2>	
 			<div class="ach-result-hotels">
 				<p><strong>Results for:</strong> {{achSearch.destination}} - <strong>Arrival:</strong> {{achSearch.arrivalDate}} - <strong>Depart:</strong> {{achSearch.departureDate}} - <strong>Adults:</strong> {{achSearch.numberOfAdults}} - <strong>Children:</strong> {{achSearch.numberOfChildren}}</p>
@@ -29,14 +29,14 @@
 					<li><strong>Sort by:</strong></li>
 					
 					<li>
-					<a ng-click="sortBy='lowRate'; reverse=!reverse" href="#" data-toggle="lowRate">Price <span ng-show="sortBy=='lowRate' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='lowRate' && reverse" class="octicon octicon-chevron-up"></span></a>
+					<a ng-click="subPreloadActive(); sortBy='lowRate'; reverse=!reverse" href="#" data-toggle="lowRate">Price <span ng-show="sortBy=='lowRate' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='lowRate' && reverse" class="octicon octicon-chevron-up"></span></a>
 					</li>
 					
 					<li>
-					<a ng-click="sortBy='hotelRating'; reverse=!reverse" href="#" data-toggle="hotelRating">Star rating <span ng-show="sortBy=='hotelRating' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='hotelRating' && reverse" class="octicon octicon-chevron-up"></span></a></li>
+					<a ng-click="subPreloadActive(); sortBy='hotelRating'; reverse=!reverse" href="#" data-toggle="hotelRating">Star rating <span ng-show="sortBy=='hotelRating' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='hotelRating' && reverse" class="octicon octicon-chevron-up"></span></a></li>
 					
 					<li>
-					<a  ng-click="sortBy='name'; reverse=!reverse" href="#" data-toggle="name">A-Z <span ng-show="sortBy=='name' && !reverse" class="octicon octicon-chevron-down"></span>
+					<a  ng-click="subPreloadActive(); sortBy='name'; reverse=!reverse" href="#" data-toggle="name">A-Z <span ng-show="sortBy=='name' && !reverse" class="octicon octicon-chevron-down"></span>
 		        	<span ng-show="sortBy=='name' && reverse" class="octicon octicon-chevron-up"></span>
 					</a>
 					</li>			
@@ -44,10 +44,11 @@
 			</div>
 				
 			<div ng-repeat="hotel in hotels | orderBy:sortBy:!reverse">
-				
+
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box">
+
 					<div class="ach-hotel-box row m-b-sm">
-						
+						<div ng-show="subPreload" ng-include src="'app/shared/preloader-white.html'"></div>
 						<div class="col-xs-12 col-sm-5 col-md-2 col-lg-2 ach-hlb-a">
 							<img class="img-responsive" width="95" ng-src="http://images.travelnow.com{{hotel.thumbNailUrl}}">
 						</div>
@@ -83,4 +84,3 @@
 		</div>
 	</div>
 </div>
-{{HotelListResponse}}

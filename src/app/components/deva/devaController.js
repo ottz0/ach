@@ -1,8 +1,11 @@
 (function(){
 
-	var DevaController = function($scope, spinnerService){
+	var DevaController = function($scope, devaFactory, $log, spinnerService){
 
 		$scope.myVar = 'breast';
+
+		$scope.months = [01,02,03,04,05,06,07,08,09,10,11,12];
+
 		
 
 		$scope.rooms = [
@@ -11,17 +14,32 @@
 				{name:'Mansion'}
 		];
 
-		$scope.test = function(data){
+		$scope.test = function(){
+			devaFactory.myTest()
+				.then(function(data, status, headers, config){
+					
+					$scope.data = data;
+					console.log($scope.data);
+					console.log(data);
+					console.log(status);
+					console.log(headers);
+					console.log(config);
 
-			var username = data
-			
-			console.log(username);
+					
+				})
+				.catch(function(data, status){
+					//var errorMsg = "Error from server: " + reason.status + reason.statusText;
+					console.log(data);
+					console.log(status);
+					//console.log(errorMsg);
+				});
 
 		}
+		$scope.test();
 	};
 
 
-	DevaController.$inject = ['$scope', 'spinnerService'];
+	DevaController.$inject = ['$scope', 'devaFactory', '$log', 'spinnerService'];
 
     angular.module('achApp')
       .controller('DevaController', DevaController);

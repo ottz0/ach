@@ -40,6 +40,17 @@
                 });
         };
 
+        /*
+            Activates filter preload spinners
+        */
+        $scope.subPreloadActive = function(){
+            console.log('hiot');
+            $scope.subPreload = true;
+            $timeout(function() {
+                $scope.subPreload = false;
+            }, 1250);
+        }
+
 
         /*
             Scope the hotelListResponse and EanError

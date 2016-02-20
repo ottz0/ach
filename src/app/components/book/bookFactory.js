@@ -3,50 +3,85 @@
 	var bookFactory = function($http, $stateParams, $httpParamSerializer, $sessionStorage, utilsFactory){
 
 		var factory = {};
-
-
-
-		/*
-			Get hotelId and build url string
-		*/
-		factory.reservationSummary = function(){
-			//var data = "cool";
-			//return data
-			//console.log(hotelInformation);
-
-			//return console.log(data);
-		}
-
 		
 		/*
 			Get hotelId and build url string
 		*/
-		factory.getBookingInformation = function(formData){	
+		factory.getBookingInformation = function(ReservationInfo){	
 
-			//Get data from the checkout form
-			var data = {
+			var storage = sessionStorage;
+			var hotelInformation = JSON.parse($storage.achHotelInformation);
+			var roomDetails = JSON.parse($storage.achRoomDetails);
+			var moreResults = JSON.parse($storage.achMoreResults);
+			var achSearch = JSON.parse($storage.achSearch);			
 
-    			room1FirstName:'test',
-				room1LastName:'testers',
-				email:formData.email,
-				homePhone:'2145370159',
-			    workPhone:'2145370159',
-			    address1:'travelnow',
-				city:'Seattle',
-				stateProvinceCode:'WA',
-				countryCode:'US',
-				postalCode:'98004',
-				smokingPreference:'NS',
+			
+			//Switch MM/DD dates
+			var arrivalDate = utilsFactory.dateFactory(achSearch.arrivalDate);
+			var departureDate = utilsFactory.dateFactory(achSearch.departureDate);
 
-				firstName:formData.firstName,
-				lastName:formData.lastName,
-				creditCardType:'CA',
-				creditCardNumber:'5401999999999999',
-				creditCardIdentifier:'123',
-				creditCardExpirationMonth:'11',
-				creditCardExpirationYear:'2016'
+			//Get the adult - child group array
+			var numberOfChildren = achSearch.numberOfChildren;
+			var childAges = achSearch.childAges;
+			var roomGroup = achSearch.numberOfAdults;
+			var childArray = [];
+
+			angular.forEach(childAges, function(value){
+				childArray.push(parseInt(value));
+			});
+
+			if(numberOfChildren > 0){
+				var roomGroup = achSearch.numberOfAdults+','+childArray;
 			}
-			return factory.eanApiCheckoutRequest(data);
+
+			//Data not contained in form
+			var RequestParameters = {
+				customerSessionId:moreResults.customerSessionId,
+				hotelId: hotelInformation.hotelId,
+				arrivalDate:arrivalDate,
+				departureDate:departureDate,
+				supplierType: roomDetails.supplierType,
+				rateKey:roomDetails.RateInfos.RateInfo.RoomGroup.Room.rateKey,
+				roomTypeCode:roomDetails.RoomType['@roomCode'],
+				rateCode:roomDetails.rateCode,
+				room1:roomGroup,
+				bedTypeId:roomDetails.BedTypes.BedType['@id'],
+				smokingPreference:roomDetails.smokingPreferences,
+				chargeableRate:roomDetails.RateInfos.RateInfo.ChargeableRateInfo['@total']
+			}
+			
+			//Data from form
+			var reservationForm = {
+				room1FirstName:ReservationInfo.room1FirstName,
+				room1LastName:ReservationInfo.room1LastName,
+				email:ReservationInfo.email,
+				firstName:ReservationInfo.firstName,
+				lastName:ReservationInfo.lastName,
+				homePhone:ReservationInfo.homePhone,			
+				creditCardType:ReservationInfo.creditCardType,
+				creditCardNumber:ReservationInfo.creditCardNumber,
+				creditCardIdentifier:ReservationInfo.creditCardIdentifier,
+				creditCardExpirationMonth:ReservationInfo.creditCardExpirationMonth,
+				creditCardExpirationYear:ReservationInfo.creditCardExpirationYear,
+				address1:ReservationInfo.address1, //encode characters
+				city:ReservationInfo.city,
+				stateProvinceCode:ReservationInfo.stateProvinceCode, //special for aus states
+				countryCode:'AU', //special code
+				postalCode:ReservationInfo.postalCode,
+				affiliateConfirmationId:ReservationInfo.affiliateConfirmationId
+			}
+			
+			var reservationData = $httpParamSerializer(RequestParameters)+'&'+$httpParamSerializer(reservationForm);
+
+
+			//return console.log(reservationData);
+
+
+
+
+
+
+			return factory.eanApiBookingRequest(reservationData);
 		};
 		
 
@@ -54,7 +89,7 @@
 		/*
 			Make request
 		*/
-		factory.eanApiBookingRequest = function(data){
+		factory.eanApiBookingRequest = function(reservationData){
 			
 			//return console.log(data);
 
@@ -64,10 +99,18 @@
                 headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				 },
-                data: $httpParamSerializer(data)
+                data: reservationData
             }).then(function(response){
             	//return response.data;
-            	return console.log(response.data);
+            	var HotelRoomReservationResponse = response.data.HotelRoomReservationResponse;
+            	if(HotelRoomReservationResponse.EanWsError){
+            		console.log('Its an error');
+            		return console.log(HotelRoomReservationResponse);
+            	}else{
+            		console.log('its all good');
+            		return console.log(HotelRoomReservationResponse);
+            	}
+            	
            	});
         };
 

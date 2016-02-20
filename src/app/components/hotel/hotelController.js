@@ -30,13 +30,11 @@
 			    	}()); //Add star ratings
 
 			    	$scope.currentImage = $scope.images[0];
-					
                     
                     $scope.setCurrentImage = function(image){
 					   $scope.currentImage = image;
 					};
-
-                    
+                  
                     $scope.googleMap = function(){
                        $timeout(function() {
                             NgMap.getMap().then(function(map) {
@@ -56,28 +54,21 @@
         $scope.hotelRoomAvailability = function(){
         	hotelFactory.hotelRoomAvailability()
         		.then(function(data){
-        			console.log(data);
-        			$scope.hotelAvail = data;
+   
+                    $scope.roomRateData = data.HotelRoomAvailabilityResponse.HotelRoomResponse;
+                    console.log(data);
+                    if($scope.roomRateData.RateInfos){
+                        //Check for single room
+                        $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse.RateInfos.RateInfo.ChargeableRateInfo['@total'];
+                        $scope.snglRoom = true;
 
-
-                    //var rateInfoA = data.HotelRoomAvailabilityResponse.HotelRoomResponse.RateInfos.RateInfo.ChargeableRateInfo['@total'];
-        			//var rateInfoB = data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'];
-                    //  if(data == data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'] || data.HotelRoomAvailabilityResponse.HotelRoomResponse.RateInfos.RateInfo.ChargeableRateInfo['@total']){
-                    //     console.log('it is');
-                    // };
-
-                   //console.log(rateInfoA);
-                   //console.log(rateInfoB);
-
-                   //return;
-                    $scope.rooms = data.HotelRoomAvailabilityResponse.HotelRoomResponse;
-                    console.log($scope.rooms);
-                    $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'];
-        			$scope.loading = false;
-
-                    //console.log();
-                    //console.log($scope.rooms[0].RateInfos.RateInfo.ChargableRateInfo['@total']);
-        		})
+                    }else{
+                        //Check for multi room
+                        $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'];
+                        $scope.multiRoom = true;
+                    }
+                    $scope.loading = false;
+        		});
         	return;
         };
         $scope.hotelRoomAvailability();

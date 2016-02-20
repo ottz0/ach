@@ -7,91 +7,13 @@
 	<strong><a href back-button><span class="octicon octicon-chevron-left"></span> Back to <span ng-bind-html="hotelInformation.name"></span></a></strong>
 	</div>
 	<div id="hotel-booking" class="row">
-		<div ng-include src="'app/components/book/aside-reservation-summary.html'"></div>
+		<div ng-include src="'app/components/book/partial-reservation-summary.html'"></div>
 		<div id="booking-form" class="col-xs-12 col-sm-12 col-md-8 col-lg-8">	
-			<!-- Start form -->	
-			<form ng-submit="bookingForm()" novalidate="novalidate">
-				<section class="ach-stroke-box">	
-					<h2>Room details</h2>
-					<div class="header-strip"></div>					
-					  <fieldset class="form-group">
-					    <label for="firstName">First name</label>
-					   		 <input type="text" 
-					   		 		ng-model="formData.firstName" 
-					   		 		name="firstName"
-					   		 		id="firstName"
-					   		 		class="form-control" 
-					   		 		required="required" 
-					   		 		placeholder="First Name">
-					  </fieldset>
-					  <fieldset class="form-group">
-					    <label for="lastName">Last name</label>
-					    	<input	type="text" 
-					    		  	ng-model="formData.lastName" 
-					   		 	  	name="lastName"
-					   		 	  	id="lastName"
-					   		 		class="form-control"
-					   		 		required="required" 
-					   		 		placeholder="Last Name">
-					  </fieldset>
-
-					  <fieldset class="form-group">
-					    <label for="lastName">Last name</label>
-					    	<input	type="email" 
-					    		  	ng-model="formData.email" 
-					   		 	  	name="email"
-					   		 	  	id="email"
-					   		 		class="form-control"
-					   		 		required="required" 
-					   		 		placeholder="Email">
-					  </fieldset>							
-				</section>
-				<section class="ach-stroke-box m-t-2">	
-					<h2>Room details</h2>
-					<div class="header-strip"></div>					
-					  <fieldset class="form-group">
-					    <label for="firstName">First name</label>
-					   		 <input type="text" 
-					   		 		ng-model="formData.firstName" 
-					   		 		name="firstName"
-					   		 		id="firstName"
-					   		 		class="form-control" 
-					   		 		required="required" 
-					   		 		placeholder="First Name">
-					  </fieldset>
-					  <fieldset class="form-group">
-					    <label for="lastName">Last name</label>
-					    	<input	type="text" 
-					    		  	ng-model="formData.lastName" 
-					   		 	  	name="lastName"
-					   		 	  	id="lastName"
-					   		 		class="form-control"
-					   		 		required="required" 
-					   		 		placeholder="Last Name">
-					  </fieldset>
-
-					  <fieldset class="form-group">
-					    <label for="lastName">Last name</label>
-					    	<input	type="email" 
-					    		  	ng-model="formData.email" 
-					   		 	  	name="email"
-					   		 	  	id="email"
-					   		 		class="form-control"
-					   		 		required="required" 
-					   		 		placeholder="Email">
-					  </fieldset>				
-
-					  <div class="form-group row">
-					    <div class="col-sm-10">
-					      <button type="submit" class="btn btn-warning">Book now</button>
-					    </div>
-					  </div>			
-				</section>
-			</form>	
+			<div ng-include src="'app/components/book/partial-booking-form.html'"></div>
 		</div>
 	</div>
 </div>
 
 <pre>
-    {{ roomDetails | json }}
+    {{ testForm | json }}
 </pre>

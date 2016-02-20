@@ -233,8 +233,42 @@
 
 		</div>
 		<div class="rooms row">
+			<!-- roomData -->
+			<div ng-show="snglRoom" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box">
+				<div class="ach-hotel-box row m-b-sm">
+					
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 ach-hlb-a">
+						<img class="img-responsive" ng-src="{{(roomRateData.RoomImages.RoomImage|| [] ).length ? roomRateData.RoomImages.RoomImage[0].url : 'assets/img/hotel-no-image.gif'}}" />
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 ach-hlb-b">
+						<h3>{{roomRateData.RoomType.description}}</h3>
+						<p class="room-desc">{{roomRateData.BedTypes.BedType.description}}</p>
+							<p class="room-adds">{{roomRateData.ValueAdds.ValueAdd.description}}</p>
+							<div id="value-adds" >
+								<ul ng-repeat="valueAdd in roomRateData.ValueAdds.ValueAdd">
+									<li>{{valueAdd.description}}</li>
+								</ul>
+							</div>
+							<p class="room-sm" ng-bind-html="roomRateData.RateInfos.RateInfo.cancellationPolicy"></p>
+					</div>
 
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box" ng-repeat="room in rooms">
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 ach-hlb-c text-xs-center text-md-right">
+						<div class="hlb-g">
+							<h4 class="ach-price">${{roomRateData.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}</h4><br />
+							<span class="ach-sm">(AUD) Total Price</span><br />
+						<a type="button" 
+						   class="ach-hl-btn btn btn-warning" 
+						   ng-click="setHotelBookingDetails(room, hotel)">
+						   Book now
+						</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<!-- /roomData -->
+			<!-- ng-repeat rooms -->
+			<div ng-show="multiRoom" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box p-b-2" ng-repeat="room in roomRateData">
 				<div class="ach-hotel-box row m-b-sm">
 					
 					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 ach-hlb-a">
@@ -266,6 +300,8 @@
 					</div>	
 				</div>
 			</div>
+			<!-- /ng-repeat rooms -->
 		</div>
 	</div>
 </div>
+<div class="m-b-2"></div>

@@ -59,7 +59,14 @@
             //Set hotelInformation
             $storage.achHotelInformation = JSON.stringify(hotelInformation);
             //Set roomDetails
+           
+            
+            return console.log(roomDetails);
+
+
             $storage.achRoomDetails = JSON.stringify(roomDetails);
+
+
             $location.path('/book');
 		};
 

@@ -19,6 +19,10 @@
 		factory.changeRating = function(hotelRating){
 			return hotelRatingFactory.getHotelRating(hotelRating);
 		};
+
+		factory.myTestResponse = function(){
+			return {FirstName: ''};
+		};
 		
 		return factory;	
 	};

@@ -42,7 +42,7 @@
 					</li>			
 				</ul>
 			</div>
-				
+				<!-- <pre>{{hotels | json}}</pre> -->
 			<div ng-repeat="hotel in hotels | orderBy:sortBy:!reverse">
 
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box">
@@ -66,7 +66,15 @@
 								<h4 class="ach-price">
 								${{hotel.RoomRateDetailsList.RoomRateDetails.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}
 								</h4><br />
-								<span class="ach-sm">(AUD) Total Price</span><br />
+								<span class="ach-sm">(AUD) Total Price</span>
+								<div ng-switch on="hotel.RoomRateDetailsList.RoomRateDetails.RateInfos.RateInfo.nonRefundable">
+							    <div ng-switch-when="false">
+							       <span class="ach-sm-info ach-green">refundable</span>
+							    </div>
+							    <div ng-switch-default>
+							       <span class="ach-sm-info ach-red"> non-refundable</span>
+							    </div>
+							</div>
 							<a type="button" ui-sref="hotel({hotelId:hotel.hotelId, hotelName:(hotel.name | slugify)})" target="_self" class="ach-hl-btn btn btn-warning">Select</a>
 							</div>
 						</div>

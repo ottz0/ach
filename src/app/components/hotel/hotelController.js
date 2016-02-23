@@ -1,6 +1,6 @@
 (function(){
 
-	var HotelController = function($scope, $stateParams, $sessionStorage, $timeout, hotelFactory, utilsFactory, NgMap){
+	var HotelController = function($scope, $stateParams, $sessionStorage, $timeout, hotelFactory, utilsFactory, NgMap, $sce){
         $scope.loading = true;
         $storage = sessionStorage;
         $scope.achSearch = JSON.parse($storage.achSearch);
@@ -15,6 +15,10 @@
                     $scope.hotelDetails = data.HotelInformationResponse.HotelDetails;
                     $scope.images = data.HotelInformationResponse.HotelImages.HotelImage;
                     $scope.hotel = data.HotelInformationResponse.HotelSummary;
+
+                    $scope.trustedHtml = function (plainText) {
+                        return $sce.trustAsHtml(plainText);
+                    }
                     
                     var hotelInformation = data.HotelInformationResponse.HotelSummary;
                     (function(){
@@ -56,7 +60,8 @@
         		.then(function(data){
    
                     $scope.roomRateData = data.HotelRoomAvailabilityResponse.HotelRoomResponse;
-                    console.log(data);
+                    $scope.availResp = data.HotelRoomAvailabilityResponse
+                    //console.log(data);
                     if($scope.roomRateData.RateInfos){
                         //Check for single room
                         $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse.RateInfos.RateInfo.ChargeableRateInfo['@total'];
@@ -82,7 +87,7 @@
 	};
 
 
-	HotelController.$inject = ['$scope', '$stateParams', '$sessionStorage', '$timeout', 'hotelFactory', 'utilsFactory', 'NgMap'];
+	HotelController.$inject = ['$scope', '$stateParams', '$sessionStorage', '$timeout', 'hotelFactory', 'utilsFactory', 'NgMap', '$sce'];
 
     angular.module('achApp')
       .controller('HotelController', HotelController);

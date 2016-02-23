@@ -1,3 +1,18 @@
-<select>
-    <option ng-repeat="month in months" value="{{month}}">{{month}}</option>
-</select>
+
+{{Data}}
+
+<input type="text" ng-model="Data.FirstName"></input>
+
+
+<div ng-switch on="myVal">
+    <div ng-switch-when="true">
+        <span class="octicon octicon-info ach-green"></span><span class="ach-sm-info ach-green"> refundable</span>
+    </div>
+    <div ng-switch-default>
+       <span class="octicon octicon-info ach-red"></span><span class="ach-sm-info ach-red"> non-refundable</span>
+    </div>
+</div>
+
+<div ng-bind-html="myEncode"></div>
+
+{{myVal}}

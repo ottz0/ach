@@ -37,7 +37,7 @@
 	    </div>
 	    <div class="col-xs-9">
 	      	<fieldset class="form-group">
-			    <label for="lastName">Card number</label>
+			    <label for="lastName">Card number 5401999999999999</label>
 			    	<input	type="number" 
 			    		  	ng-model="ReservationInfo.creditCardNumber" 
 			   		 	  	name="postalCode"
@@ -77,14 +77,25 @@
 			   		 		class="form-control"
 			   		 		 
 			   		 		>
+
 			</fieldset>	
+
 	    </div>
 	</div>
 	<div class="alert alert-info" role="alert">
   		<strong><span class="booking-large">${{roomPrices['@total']}} </span></strong>
-  		<span class="booking-small"> (Total to pay now)</span>
+  		<span class="booking-smalls"> (Total to pay now)</span>
+  		<p class="booking-small font-weight-bold">The credit card provided will be charged immediately for the full amount of the reservation</p>
 	</div>
-	<p class="booking-small"><strong>Cancelation policy</strong> - <span ng-bind-html="roomDetails.RateInfos.RateInfo.cancellationPolicy"></span></p>
-	<button type="submit" class="btn btn-lg btn-warning">Book now</button>
+	<p class="booking-small">
+		<input type="checkbox"
+			   ng-model="disableButtons"
+			   ng-true-value="false"
+			   ng-false-value="true"
+			   ng-change="disabled"
+		>
+		By selecting to complete this booking I acknowledge that I have read and accept the <strong><a href="#tc" data-toggle="collapse">Cancelation policy</a></strong> for the selected room</p>
+	<p id="tc" class="booking-small collapse"><strong>Cancelation policy</strong> - <span ng-bind-html="roomDetails.RateInfos.RateInfo.cancellationPolicy"></span></p>
+	<button type="submit" class="btn btn-lg btn-warning" ng-class="{'disabled': disableButtons}">Book now</button>
 	<p class="booking-small">To prevent duplicate bookings, press only once.</p>
 </section>

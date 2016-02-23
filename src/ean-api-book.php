@@ -3,67 +3,8 @@
 	ini_set('display_startup_errors', 1);
 	error_reporting(E_ALL);
 
-	//$response = file_get_contents("php://input");
-	$postData= 'https://book.api.ean.com/ean-services/rs/hotel/v3/res';
-
-	//echo $response;
-
-    /*
-    	Required EAN parameters
-
-    	apiExperience
-    	cid
-		apiKey
-		minorRev
-		locale
-		currencyCode - only for booking
-		
-		customerSessionId
-		customerIpAddress
-		customerUserAgent
-
-	*/    	
-
-	//Form Search session
-    $hotelId = '106347';
-    $arrivalDate = '7/12/2016';
-    $departureDate = '7/14/2016';
-    $supplierType = 'E';
-    $room1 = '2,5,7';
-    
-
-    
-	//Booking button
-    $bedTypeId = '23';
-    $rateKey = 'af00b688-acf4-409e-8bdc-fcfc3d1cb80c';
-    $roomTypeCode = '198058';
-    $rateCode = '484072';
-    $chargeableRate = '231.18';
-
-
-    ///Booking form
-    $room1FirstName = 'test';
-	$room1LastName = 'testers';
-    $smokingPreference = 'NS';
-    $email = 'test@travelnow.com';
-    $homePhone = '2145370159';
-    $workPhone = '2145370159';
-    $address1='travelnow';
-	$city='Seattle';
-	$stateProvinceCode='WA';
-	$countryCode='US';
-	$postalCode='98004';
-
-    
-    //Credit card
-	$firstName = 'test booking';
-    $lastName = 'test booking';
-    $creditCardType='CA';
-	$creditCardNumber='5401999999999999';
-	$creditCardIdentifier='123';
-	$creditCardExpirationMonth='11';
-	$creditCardExpirationYear='2016';
-
+	$postData = file_get_contents("php://input");
+	$endPoint= 'https://book.api.ean.com/ean-services/rs/hotel/v3/res';	
 
     //Ean constants
     $CID = '397896'; // 397896 for production
@@ -73,56 +14,20 @@
 	$LOCAL = 'en_US';
 	$CURRENCY_CODE = 'AUD';
 
-	//Ean requuired
+	//Ean required
 	$userAgent = urlencode($_SERVER['HTTP_USER_AGENT']);
     $ip = $_SERVER['REMOTE_ADDR'];
 
 
 	//use latest minorRev 30
 	//$url = $postData;
-	$url = 'apiKey='.$API_KEY;
+	$url = $postData;
+	$url .= '&apiKey='.$API_KEY;
 	$url .= '&minorRev='.$MINOR_REV;
 	$url .= '&cid='.$CID;
 	$url .= '&locale='.$LOCAL;
 	$url .= '&apiExperience='.$API_EXPERIENCE;
 	$url .= '&currencyCode='.$CURRENCY_CODE;
-
-
-	$url .= '&hotelId='.$hotelId;
-	$url .= '&arrivalDate='.$arrivalDate;
-	$url .= '&departureDate='.$departureDate;
-	$url .= '&supplierType='.$supplierType;
-	$url .= '&rateKey='.$rateKey;
-	$url .= '&roomTypeCode='.$roomTypeCode;
-	$url .= '&rateCode='.$rateCode;
-	$url .= '&chargeableRate='.$chargeableRate;
-	$url .= '&room1='.$room1;
-	$url .= '&room1FirstName='.$room1FirstName;
-	$url .= '&room1LastName='.$room1LastName;
-
-
-	$url .= '&bedTypeId='.$bedTypeId;
-	$url .= '&smokingPreference='.$smokingPreference;
-	$url .= '&email='.$email;
-	$url .= '&homePhone='.$homePhone;
-	$url .= '&workPhone='.$workPhone;
-	$url .= '&address1='.$address1;
-	$url .= '&city='.$city;
-	$url .= '&stateProvinceCode='.$stateProvinceCode;
-	$url .= '&countryCode='.$countryCode;
-	$url .= '&postalCode='.$postalCode;
-
-	
-	//Credit card
-	$url .= '&firstName='.$firstName;
-	$url .= '&lastName='.$lastName;
-	$url .= '&creditCardType='.$creditCardType;
-	$url .= '&creditCardNumber='.$creditCardNumber;
-	$url .= '&creditCardIdentifier='.$creditCardIdentifier;
-	$url .= '&creditCardExpirationMonth='.$creditCardExpirationMonth;
-	$url .= '&creditCardExpirationYear='.$creditCardExpirationYear;
-	
-
 	$url .= '&customerIpAddress='.$ip;
 	$url .= '&customerUserAgent='.$userAgent;
 
@@ -130,7 +35,7 @@
 	$ch = curl_init();
 	
 	curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
-	curl_setopt( $ch, CURLOPT_URL, $postData );
+	curl_setopt( $ch, CURLOPT_URL, $endPoint );
 	curl_setopt($ch, CURLOPT_POST, 1);
 	curl_setopt($ch, CURLOPT_POSTFIELDS, $url);
 	curl_setopt( $ch, CURLOPT_RETURNTRANSFER, true );

@@ -27,7 +27,7 @@
 							{{roomDetails.RoomType.description}}</p>
 							<p><strong>Bed details: </strong>{{roomDetails.BedTypes.BedType.description}}</p>					
 								<span id="b-detail" class="octicon octicon-chevron-down"></span>
-								<a href="#room-details" data-toggle="collapse">Show room details</a>									
+								<a href="#room-details" data-toggle="collapse" class="booking-small">View room details</a>									
 								<div id="room-details"class="collapse booking-small" ng-bind-html="roomDetails.RoomType.descriptionLong">
 							</div>
 						</div>
@@ -67,7 +67,7 @@
 			<hr>
 				<div class="row">
 					<div class="col-xs-8">
-						<p>Fees &amp; taxes:</p>
+						<p style="line-height:14px;">Tax Recovery Charges and Service Fees:</p>
 					</div>
 					<div class="col-xs-4">
 						<p class="text-xs-right">${{roomPrices['@surchargeTotal']}}</p>
@@ -77,11 +77,15 @@
 				<div class="row">
 					<div class="col-xs-6">
 						<p class="font-weight-bold">Total to Pay now</p>
+						<p style="line-height:14px; font-size:11px;">(Including Tax Recovery Charges and Service Fees)</p>
 					</div>
 					<div class="col-xs-6">
 						<h3 id="booking-total" class="text-xs-right"><strong>${{roomPrices['@total']}}</strong></h3>
 					</div>
 				</div>
+				<span id="b-detail" class="octicon octicon-chevron-down"></span>
+				<a href="#tca" class="booking-small" data-toggle="collapse">View terms and conditions</a>
+				<div id="tca" class="booking-small collapse"><strong>Cancelation policy</strong> - <span ng-bind-html="roomDetails.RateInfos.RateInfo.cancellationPolicy"></span></div>
 		</div>
 
 		</div>

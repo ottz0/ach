@@ -45,6 +45,13 @@
                 // }
             })
 
+            .state('confirm', { 
+                title: 'Confirm',
+                url: '/book/confirm',
+                controller: 'ConfirmController',
+                templateUrl: 'app/components/confirm/confirmView.html',
+            })
+
             .state('dev', { 
                 title: 'Dev page',
                 url:"/dev",
@@ -66,6 +73,11 @@
                 templateUrl: 'app/components/devb/devbView.html'
             })
 
+            .state("otherwise", {
+                url: "*path",
+                templateUrl: "views/error-not-found.html"
+            });
+
         $locationProvider.html5Mode(true);
             
     })
@@ -77,13 +89,22 @@
      //$rootScope.loading = { value: true };
     }])
 
+    // .directive('helloWorld',function(){
+    //     return{
+    //         template: 'Hello world';
+    //     };
+    // });
+    // .filter('to_trusted', ['$sce', function($sce){
+    //     return function(text) {
+    //         return $sce.trustAsHtml(text);
+    //     };
 
 
-   // .filter("sanitize", ['$sce', function($sce) {
-   //    return function(htmlCode){
-   //      return $sce.trustAsHtml(htmlCode);
-   //    }
-   //  }]);
+   .filter("to_trusted", ['$sce', function($sce) {
+      return function(htmlCode){
+        return $sce.trustAsHtml(htmlCode);
+      }
+    }]);
 
 
 }());

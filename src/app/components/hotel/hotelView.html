@@ -17,7 +17,7 @@
 				<img class="img-responsive hl-ta" ng-src="{{hotel.tripAdvisorRatingUrl}}" ng-hide="angular.isDefined(hotel.tripAdvisorRatingUrl)"> 
 				<p class="hotel-sm" style="padding-top:7px;">TripAdvisor reviews: {{hotel.tripAdvisorReviewCount}}</p>
 				</div>
-				<div class="m-b-md" href="#map" data-toggle="collapse">
+				<div class="m-b-2" href="#map" data-toggle="collapse">
 					<img src="assets/img/map_icon" height="20" width="17">
 					<a href="#" class="hotel-sm" ng-click="googleMap()">View map</a>
 				</div>
@@ -211,7 +211,7 @@
 
 						  
 							  <div class="col-xs-12 col-sm-12 col-lg-2">
-							    <button type="submit" class="btn btn-default btn-block hbm">Change</button>
+							    <button type="submit" class="btn btn-primary btn-block hbm">Change</button>
 							  </div>
 
 							  <br /><br />
@@ -251,7 +251,7 @@
 								</ul>
 							</div>
 							<p class="room-sm" ng-bind-html="roomRateData.RateInfos.RateInfo.cancellationPolicy"></p>
-					</div>
+=					</div>
 
 					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 ach-hlb-c text-xs-center text-md-right">
 						<div class="hlb-g">
@@ -301,7 +301,64 @@
 				</div>
 			</div>
 			<!-- /ng-repeat rooms -->
+			<p class="room-sm">The room rates listed are for double occupancy per room unless otherwise stated and exclude tax recovery charges and service fees.It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. AustralianCheapHotels is not responsible for any inaccuracies in the photos.</p>
 		</div>
 	</div>
 </div>
 <div class="m-b-2"></div>
+<div class="container">
+
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	  <li class="nav-item">
+	    <a class="nav-link active" data-toggle="tab" href="#checkInInstructions" role="tab">Checkin instructions</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#propertyInformation" role="tab">Property information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#areaInformation" role="tab">Area information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomInformation" role="tab">Room information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#hotelPolicy" role="tab">Hotel Policy</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomDetailDescription" role="tab">Room description</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomFees" role="tab">Room fees</a>
+	  </li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <div class="tab-pane active" id="checkInInstructions" role="tabpanel" ng-bind-html="hotelDetails.checkInInstructions"></div>
+	  <div class="tab-pane" id="propertyInformation" role="tabpanel" ng-bind-html="hotelDetails.propertyInformation"></div>
+	  <div class="tab-pane" id="areaInformation" role="tabpanel" ng-bind-html="hotelDetails.areaInformation | to_trusted"></div>
+	  <div class="tab-pane" id="roomInformation" role="tabpanel" ng-bind="hotelDetails.roomInformation"></div>
+	   <div class="tab-pane" id="hotelPolicy" role="tabpanel" ng-bind-html="hotelDetails.hotelPolicy"></div>
+	    <div class="tab-pane" id="roomDetailDescription" role="tabpanel" ng-bind-html="hotelDetails.roomDetailDescription"></div>
+	    <div class="tab-pane" id="roomFees" role="tabpanel" ng-bind-html="hotelDetails.roomFeesDescription"></div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<pre>{{hotelDetails | json}}</pre>

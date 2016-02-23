@@ -90,9 +90,6 @@
 			Make request
 		*/
 		factory.eanApiBookingRequest = function(reservationData){
-			
-			//return console.log(data);
-
 			return $http({
                 method: "post",
                 url: "ean-api-book.php",
@@ -101,16 +98,7 @@
 				 },
                 data: reservationData
             }).then(function(response){
-            	//return response.data;
-            	var HotelRoomReservationResponse = response.data.HotelRoomReservationResponse;
-            	if(HotelRoomReservationResponse.EanWsError){
-            		console.log('Its an error');
-            		return console.log(HotelRoomReservationResponse);
-            	}else{
-            		console.log('its all good');
-            		return console.log(HotelRoomReservationResponse);
-            	}
-            	
+            	return response.data;      	
            	});
         };
 

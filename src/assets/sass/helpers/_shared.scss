@@ -21,6 +21,10 @@ input[type="number"] {
 	cursor:pointer;
 }
 
+.ach-green{
+  color:green;
+}
+
 .ach-red{
 	color:$brand-danger;
 }
@@ -35,5 +39,10 @@ input[type="number"] {
 .mid-sub{
 	font-size:1.3rem;
 	color:$ach-mid-blue;
+}
+
+.ach-sm-info{
+    padding:-15px 0 -5px 0;
+    font-size:0.8rem;
 }
 

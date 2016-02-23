@@ -1,7 +1,8 @@
 (function(){
 
 	var DevbController = function($scope, utilsFactory){
-			 
+			
+			$scope.Data = utilsFactory.myTestResponse();
 			 
 
 			 $scope.message = 'hello';

@@ -5936,6 +5936,10 @@ input[type="number"] {
   cursor: pointer;
 }
 
+.ach-green {
+  color: green;
+}
+
 .ach-red {
   color: #991313;
 }
@@ -5951,6 +5955,11 @@ input[type="number"] {
 .mid-sub {
   font-size: 1.3rem;
   color: #2973ba;
+}
+
+.ach-sm-info {
+  padding: -15px 0 -5px 0;
+  font-size: 0.8rem;
 }
 
 /* 

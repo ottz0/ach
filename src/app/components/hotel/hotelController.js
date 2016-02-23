@@ -60,7 +60,7 @@
         		.then(function(data){
    
                     $scope.roomRateData = data.HotelRoomAvailabilityResponse.HotelRoomResponse;
-                    $scope.availResp = data.HotelRoomAvailabilityResponse
+                    $scope.availResp = data.HotelRoomAvailabilityResponse;
                     //console.log(data);
                     if($scope.roomRateData.RateInfos){
                         //Check for single room
@@ -71,7 +71,8 @@
                         //Check for multi room
                         $scope.lowestPrice = data.HotelRoomAvailabilityResponse.HotelRoomResponse[0].RateInfos.RateInfo.ChargeableRateInfo['@total'];
                         $scope.multiRoom = true;
-                    }
+                    }                 
+
                     $scope.loading = false;
         		});
         	return;

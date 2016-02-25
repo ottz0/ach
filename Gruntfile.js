@@ -55,11 +55,58 @@ module.exports = function(grunt) {
       }
     },
 
+    //Tasks for distribution
+    // copy:{
+    //   dist:{
+    //     files: [
+    //       {nonull: true, expand: true, cwd: 'src', src: 'index.html', dest: 'dist'},
+    //       {nonull: true, expand: true, cwd: 'src', src: 'eanapi/**', dest: 'dist'},
+    //     ],
+    //   },  
+    // },
+
+    clean: {
+        src: ['dist/index.html']
+    },
+
+
+    copy: {
+        dist: {
+            files: [{
+                expand: true,
+                cwd: 'src',
+                src: [
+                    'index.html',
+                    'eanapi/*'
+                    //'foo/*.{png,jpg}',
+                    //'foo/*.{png,jpg}',
+                ],
+                dest: 'dist'
+            }],
+        },
+    },
+
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'release/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'release/css',
+          ext: '.min.css'
+        }]
+      }
+    },
 
   });
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
+
+
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
  
 
 
@@ -67,7 +114,7 @@ module.exports = function(grunt) {
   grunt.registerTask('server', ['connect','watch']);
 
   //Run the distribution
-  grunt.registerTask('dist', ['connect']);
+  grunt.registerTask('dist', ['clean', 'copy']);
 
 
 

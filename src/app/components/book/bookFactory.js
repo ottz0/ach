@@ -92,7 +92,7 @@
 		factory.eanApiBookingRequest = function(reservationData){
 			return $http({
                 method: "post",
-                url: "ean-api-book.php",
+                url: "eanapi/ean-api-book.php",
                 headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
 				 },

@@ -65,7 +65,7 @@
 
 			return $http({
                 method: "post",
-                url: "ean-api.php",
+                url: "eanapi/ean-api.php",
                 data: data
             })
                 .then(function(response){

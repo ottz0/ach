@@ -1,0 +1,94 @@
+<!-- Search -->
+<div id="search-wrapper">
+    <div ng-include src="'app/shared/search/searchView.html'"></div>
+    <hr class="m-t-0" />
+</div>
+<!-- /search -->
+<div ng-show="loading" ng-include src="'app/shared/preloader.html'"></div>
+<div class="container">
+	<div ng-show="eanErrorBlock">
+		<aside id="aside-filter" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			 <div class="alert alert-danger" role="alert">
+	    		<p class="text-center">{{eanError.presentationMessage}}</p>
+	  		</div>	
+		</aside>
+	</div>
+	<div ng-show="achMain">
+		<aside id="aside-filter" class="col-xs-12 col-sm-12 col-md-12 col-lg-2">
+			<div ng-include src="'app/components/hotels/aside-filter.html'"></div>	
+		</aside>
+
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-10 p-b-2">
+			<h2>Results for hotels in {{achSearch.destination}}</h2>	
+			<div class="ach-result-hotels">
+				<p><strong>Results for:</strong> {{achSearch.destination}} - <strong>Arrival:</strong> {{achSearch.arrivalDate}} - <strong>Depart:</strong> {{achSearch.departureDate}} - <strong>Adults:</strong> {{achSearch.numberOfAdults}} - <strong>Children:</strong> {{achSearch.numberOfChildren}}</p>
+			</div>	
+
+			<div id="ach-filter">
+				<ul>
+					<li><strong>Sort by:</strong></li>
+					
+					<li>
+					<a ng-click="subPreloadActive(); sortBy='lowRate'; reverse=!reverse" href="#" data-toggle="lowRate">Price <span ng-show="sortBy=='lowRate' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='lowRate' && reverse" class="octicon octicon-chevron-up"></span></a>
+					</li>
+					
+					<li>
+					<a ng-click="subPreloadActive(); sortBy='hotelRating'; reverse=!reverse" href="#" data-toggle="hotelRating">Star rating <span ng-show="sortBy=='hotelRating' && !reverse" class="octicon octicon-chevron-down"></span><span ng-show="sortBy=='hotelRating' && reverse" class="octicon octicon-chevron-up"></span></a></li>
+					
+					<li>
+					<a  ng-click="subPreloadActive(); sortBy='name'; reverse=!reverse" href="#" data-toggle="name">A-Z <span ng-show="sortBy=='name' && !reverse" class="octicon octicon-chevron-down"></span>
+		        	<span ng-show="sortBy=='name' && reverse" class="octicon octicon-chevron-up"></span>
+					</a>
+					</li>			
+				</ul>
+			</div>
+				<!-- <pre>{{hotels | json}}</pre> -->
+			<div ng-repeat="hotel in hotels | orderBy:sortBy:!reverse">
+
+				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box">
+
+					<div class="ach-hotel-box row m-b-sm">
+						<div ng-show="subPreload" ng-include src="'app/shared/preloader-white.html'"></div>
+						<div class="col-xs-12 col-sm-5 col-md-2 col-lg-2 ach-hlb-a">
+							<img class="img-responsive" width="95" ng-src="http://images.travelnow.com{{hotel.thumbNailUrl}}">
+						</div>
+						
+						<div class="col-xs-12 col-sm-7 col-md-8 col-lg-8 ach-hlb-b">
+							<h3 ng-bind-html="hotel.name"></h3>
+							<img class="img-responsive" src="{{hotel.hotelRating}}">
+							<p><span ng-bind-html="hotel.address1"></span>, {{hotel.city}}, {{hotel.stateProvinceCode}} {{hotel.postalCode}}</p>
+							<img class="img-responsive hl-ta" ng-src="{{hotel.tripAdvisorRatingUrl}}" ng-hide="angular.isDefined(hotel.tripAdvisorRatingUrl)"> 
+							<p class="ach-sm" style="padding-top:7px;">TripAdvisor reviews: {{hotel.tripAdvisorReviewCount}}</p>
+						</div>
+
+						<div class="col-xs-12 col-sm-12 col-md-2 col-lg-2 ach-hlb-c text-xs-center text-md-right">
+							<div class="hlb-g">
+								<h4 class="ach-price">
+								${{hotel.RoomRateDetailsList.RoomRateDetails.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}
+								</h4><br />
+								<span class="ach-sm">(AUD) Total Price</span>
+								<div ng-switch on="hotel.RoomRateDetailsList.RoomRateDetails.RateInfos.RateInfo.nonRefundable">
+							    <div ng-switch-when="false">
+							       <span class="ach-sm-info ach-green">refundable</span>
+							    </div>
+							    <div ng-switch-default>
+							       <span class="ach-sm-info ach-red"> non-refundable</span>
+							    </div>
+							</div>
+							<a type="button" ui-sref="hotel({hotelId:hotel.hotelId, hotelName:(hotel.name | slugify)})" target="_self" class="ach-hl-btn btn btn-warning">Select</a>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+			
+			</div>
+			<div class="clearfix"></div>
+			<div ng-show="moreResults">
+				<spinner name="mySpinner" class="text-xs-center" show="moreResSpin" img-src="assets/img/preload.gif"></spinner>
+				<span us-spinner spinner-key="spinner-1"></span>
+				<a type="button" class="btn btn-block btn-warning btn-lg" ng-click="moreResults()">View more hotels</a>
+			</div>
+		</div>
+	</div>
+</div>

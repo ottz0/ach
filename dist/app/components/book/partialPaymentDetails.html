@@ -1,0 +1,101 @@
+<section class="ach-stroke-box m-t-2">	
+	<h2>Payment details</h2>
+	<div class="header-strip"></div>	
+	<p><span class="octicon octicon-shield"><strong> Your reservation is secure and safe</strong></span><p>				
+	  <fieldset class="form-group">
+	    <label for="firstName">First name (Name on credit card)</label>
+	   		 <input type="text" 
+	   		 		ng-model="ReservationInfo.firstName" 
+	   		 		name="firstName"
+	   		 		id="firstName"
+	   		 		class="form-control" 
+	   		 		
+	   		 		>
+	  </fieldset>
+	  <fieldset class="form-group">
+	    <label for="lastName">Last name (Name on credit card)</label>
+	    	<input	type="text" 
+	    		  	ng-model="ReservationInfo.lastName" 
+	   		 	  	name="lastName"
+	   		 	  	id="lastName"
+	   		 		class="form-control"
+	   		 		 
+	   		 		>
+	  </fieldset>
+	  <p class="font-weight-bold">We accept the following payment methods</strong></span><br /><img src="assets/img/credit-card.gif"><p>
+	<div class="row">
+		<div class="col-xs-3">
+	    	<fieldset class="form-group">
+			    <label for="lastName">Card type</label>
+			    	<select class="form-control" ng-model="ReservationInfo.creditCardType">
+			    		<option value="CA">MasterCard</option>
+						<option value="VI">Visa</option>
+						<option value="AX">American Express</option>
+						<option value="DS">Discover</option>
+					</select>
+			</fieldset>
+	    </div>
+	    <div class="col-xs-9">
+	      	<fieldset class="form-group">
+			    <label for="lastName">Card number 5401999999999999</label>
+			    	<input	type="number" 
+			    		  	ng-model="ReservationInfo.creditCardNumber" 
+			   		 	  	name="postalCode"
+			   		 	  	id="postalCode"
+			   		 		class="form-control"
+			   		 		 
+			   		 		>
+			</fieldset>	
+	    </div>
+	</div>				
+	  
+	<div class="row">
+	    <div class="col-xs-3">
+	      	<fieldset class="form-group">
+			    <label for="creditCardExpirationMonth">Month</label>
+			    	<select class="form-control" ng-model="ReservationInfo.creditCardExpirationMonth">
+    					<option ng-repeat="month in months" value="{{month}}">{{month}}</option>
+					</select>
+			</fieldset>
+	    </div>
+	    <div class="col-xs-3">
+	      	<fieldset class="form-group">
+			    <label for="lastName">Year</label>
+			    	<select class="form-control" ng-model="ReservationInfo.creditCardExpirationYear">
+			    		<option ng-repeat="year in years" value="{{year}}">{{year}}</option>
+
+					</select>
+			</fieldset>
+	    </div>
+	    <div class="col-xs-3">
+	      	<fieldset class="form-group">
+			    <label for="lastName">Security code</label>
+			    	<input	type="number" 
+			    		  	ng-model="ReservationInfo.creditCardIdentifier" 
+			   		 	  	name="postalCode"
+			   		 	  	id="postalCode"
+			   		 		class="form-control"
+			   		 		 
+			   		 		>
+
+			</fieldset>	
+
+	    </div>
+	</div>
+	<div class="alert alert-info" role="alert">
+  		<strong><span class="booking-large">${{roomPrices['@total']}} </span></strong>
+  		<span class="booking-smalls"> (Total to pay now)</span>
+  		<p class="booking-small font-weight-bold">The credit card provided will be charged immediately for the full amount of the reservation</p>
+	</div>
+	<p class="booking-small">
+		<input type="checkbox"
+			   ng-model="disableButtons"
+			   ng-true-value="false"
+			   ng-false-value="true"
+			   ng-change="disabled"
+		>
+		By selecting to complete this booking I acknowledge that I have read and accept the <strong><a href="#tc" data-toggle="collapse">Cancelation policy</a></strong> for the selected room</p>
+	<p id="tc" class="booking-small collapse"><strong>Cancelation policy</strong> - <span ng-bind-html="roomDetails.RateInfos.RateInfo.cancellationPolicy"></span></p>
+	<button type="submit" class="btn btn-lg btn-warning" ng-class="{'disabled': disableButtons}">Book now</button>
+	<p class="booking-small">To prevent duplicate bookings, press only once.</p>
+</section>

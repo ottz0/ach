@@ -114,6 +114,7 @@
 	return factory;
 	}; // /factory
 
+	hotelsFactory.$inject = ['$http', '$sessionStorage', 'utilsFactory'];
 
 	//Register the object with Angular.js
     angular.module('achApp')

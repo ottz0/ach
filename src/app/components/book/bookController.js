@@ -63,35 +63,18 @@
 	            		//$location.path('/book/confirm');
 	            		$scope.bookingConfirm(HotelRoomReservationResponse);
 	            	}
-
 				});
-				return;
+			return;
 	
 		}
 
 		$scope.bookingConfirm = function(data){
-			
-
-			/*
-				Testing only remove
-			*/
-
-			//Set storage
-			//$storage.HotelRoomReservationResponse = JSON.stringify(data); 
-			//get storage
-			//$scope.HotelRoomReservationResponse = JSON.parse($storage.HotelRoomReservationResponse);
-
-
-
-
-
 			$scope.HotelRoomReservationResponse = data;
 			console.log($scope.HotelRoomReservationResponse);
 			$scope.eanConfirmBlock = true;
 			$scope.achBookingHeader = false;
 			$scope.achMain = false;
 		};
-
 
 
 		$scope.eanError = function(data){

@@ -1,0 +1,185 @@
+<div class="hero">
+	<div id="home-search-wrapper" class="container">
+		<div id="home-search" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 m-b-md">
+			<div id="home-search-form">
+				
+				<form name="destinationSearch" ng-submit="gc.setSearchDestination()">
+	  				<fieldset class="form-group">
+						<div class="row">			  
+							<div class="col-xs-12 col-sm-12 col-lg-8">
+							  	<label class="ach-search-home" for="destination">Search for your Australian holiday destination</label>
+							    <input     
+							    	   id="destination"
+							    	   ng-model="achSearch.destination" 
+							    	   type="text" 
+							    	   class="form-control form-control-lg"
+							    	   placeholder="Search destination"
+							    	   required="required"/>
+							  </div> 
+							  
+							  <div class="col-xs-6 col-sm-6 col-lg-2">
+							  	<label class="ach-search-home" for="arrivalDate">Arrive</label>
+							    <input id="arrival-date" 			    	
+							    	   class="datepicker form-control form-control-lg" 
+							    	   data-date-format="dd/mm/yyyy" 
+=							    	   type="text"
+							    	   ng-model="achSearch.arrivalDate" 
+							    	   required="required"/>
+							  </div>
+							  
+							  <div class="col-xs-6 col-sm-6 col-lg-2">
+							  	<label class="ach-search-home" for="departureDate">Depart</label>
+							    <input id="departure-date" 
+							    	   class="datepicker form-control form-control-lg" 
+							    	   data-date-format="dd/mm/yyyy" 
+							    	   type="text" 
+							    	   ng-model="achSearch.departureDate" 
+							    	   required="required"/>
+							  </div>
+							  		  
+						</div>
+
+						<!-- Adult-child -->
+						<div class="row p-t-sm"> 
+							<div class="col-xs-6 col-sm-6 col-lg-2">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Adults</label>
+							    <select class="form-control form-control-lg select-home" name="adults" id="adults" ng-model="achSearch.numberOfAdults">
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+							    </select>
+							  </fieldset>
+							</div>
+
+							<div class="col-xs-6 col-sm-6 col-lg-2">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Children</label>
+							    <select class="form-control form-control-lg" name="children" id="children" ng-model="achSearch.numberOfChildren" ng-change="updateChildren()">
+							      <option value="0">0</option>
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+							    </select>
+							  </fieldset>
+							</div>
+
+							<div class="col-xs-3 col-sm-3 col-lg-2" ng-show="child1">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Age(s)</label>
+							    <select class="form-control form-control-lg" name="children" id="children" ng-model="achSearch.childAges.child1">
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								  <option value="11">11</option>
+								  <option value="12">12</option>
+								  <option value="13">13</option>
+								  <option value="14">14</option>
+								  <option value="15">15</option>
+								  <option value="16">16</option>
+								  <option value="17">17</option>
+							    </select>
+							  </fieldset>
+							</div>
+							{{achSearch.childAges.child1}}
+							<div class="col-xs-3 col-sm-3 col-lg-2" ng-show="child2">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Age(s)</label>
+							    <select class="form-control form-control-lg" name="children" id="children" ng-model="achSearch.childAges.child2">
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								  <option value="11">11</option>
+								  <option value="12">12</option>
+								  <option value="13">13</option>
+								  <option value="14">14</option>
+								  <option value="15">15</option>
+								  <option value="16">16</option>
+								  <option value="17">17</option>
+							    </select>
+							  </fieldset>
+							</div>
+							{{achSearch.childAges.child2}}
+							<div class="col-xs-3 col-sm-3 col-lg-2" ng-show="child3">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Age(s)</label>
+							    <select class="form-control form-control-lg" name="children" id="children" ng-model="achSearch.childAges.child3">
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								  <option value="11">11</option>
+								  <option value="12">12</option>
+								  <option value="13">13</option>
+								  <option value="14">14</option>
+								  <option value="15">15</option>
+								  <option value="16">16</option>
+								  <option value="17">17</option>
+							    </select>
+							  </fieldset>
+							</div>
+							{{achSearch.childAges.child3}}
+							<div class="col-xs-3 col-sm-3 col-lg-2" ng-show="child4">
+							  <fieldset class="form-group">
+							    <label class="ach-search-home" for="children">Age(s)</label>
+							    <select class="form-control form-control-lg" name="children" id="children" ng-model="achSearch.childAges.child4">
+							      <option value="1">1</option>
+								  <option value="2">2</option>
+								  <option value="3">3</option>
+								  <option value="4">4</option>
+								  <option value="5">5</option>
+								  <option value="6">6</option>
+								  <option value="7">7</option>
+								  <option value="8">8</option>
+								  <option value="9">9</option>
+								  <option value="10">10</option>
+								  <option value="11">11</option>
+								  <option value="12">12</option>
+								  <option value="13">13</option>
+								  <option value="14">14</option>
+								  <option value="15">15</option>
+								  <option value="16">16</option>
+								  <option value="17">17</option>
+							    </select>
+							  </fieldset>
+							</div>
+							{{achSearch.childAges.child4}}
+						</div><!-- /Adult-child -->
+
+						<div class="row">
+							<label class="ach-search" for="exampleInputEmail1">&nbsp;</label>
+			  					<div class="col-xs-12 col-sm-12 col-lg-2">
+			    				<button type="submit" class="btn btn-warning btn-block btn-lg">Search</button>
+			    			</div>
+			  			</div>	
+						
+					</fieldset>
+				</form>
+
+
+			</div>
+		</div>
+	</div>
+</div>

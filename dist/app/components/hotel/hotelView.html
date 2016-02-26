@@ -1,0 +1,364 @@
+<div ng-show="loading" ng-include src="'app/shared/preloader.html'"></div>
+<div class="container">
+	<div class="ach-result-hotel container">
+		<p><strong><a href back-button><span class="octicon octicon-chevron-left"></span> Back to search results</a></strong> | <strong>Arrival:</strong> {{achSearch.arrivalDate}} - <strong>Depart:</strong> {{achSearch.departureDate}} : <strong>Adults:</strong> {{achSearch.numberOfAdults}} - <strong>Children:</strong> {{achSearch.numberOfChildren}} | <a class="ach-pointer" scroll-to-item scroll-to="#avail">Change</a></p>
+	</div>
+</div>
+<hr class="m-t-0" />
+
+<div class="container">
+	<div id="hotel-info" class="row">
+		<div id="hotel-main-tag" class="col-xs-12 col-sm-12 col-md-12 col-lg-6 p-b-lg">			
+			<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9 ach-hlb-b">
+				<h3 ng-bind-html="hotel.name"></h3>
+				<img class="img-responsive" src="{{hotel.hotelRating}}">
+				<p class="hotel-sm"><span ng-bind-html="hotel.address1"></span>, {{hotel.city}}, {{hotel.stateProvinceCode}} {{hotel.postalCode}}</p>
+				<div ng-hide="ta-group">
+				<img class="img-responsive hl-ta" ng-src="{{hotel.tripAdvisorRatingUrl}}" ng-hide="angular.isDefined(hotel.tripAdvisorRatingUrl)"> 
+				<p class="hotel-sm" style="padding-top:7px;">TripAdvisor reviews: {{hotel.tripAdvisorReviewCount}}</p>
+				</div>
+				<div class="m-b-2" href="#map" data-toggle="collapse">
+					<img src="assets/img/map_icon" height="20" width="17">
+					<a href="#" class="hotel-sm" ng-click="googleMap()">View map</a>
+				</div>
+			</div>
+
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 ach-hlb-c text-xs-center text-md-right">
+				<div class="hlb-g">
+					<h4 class="ach-price">${{lowestPrice | number:0}}</h4><br />
+					<span class="ach-sm">(AUD) Total Price</span><br />
+				<a type="button" class="ach-hl-btn btn btn-warning" scroll-to-item scroll-to="#avail">Book now</a>
+				</div>
+			</div>			
+
+			<div class="col-xs-12 collapse" id="map" >
+				<ng-map zoom="13" center="{{achLat}}, {{achLong}}" style="max-height:280px;">
+				    <marker position="[{{hotel.latitude}}, {{hotel.longitude}}]" title="{{hotel.name}}"></marker>
+				</ng-map>
+			</div>
+
+		</div>
+
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-6">
+			<div id="album-image">
+				<img ng-src="{{currentImage.url}}" width="500" class="img-responsive">
+			</div>
+
+			<div id="thumb-wrapper">
+				<ul id="thumb-list">
+					<li ng-repeat="image in images | limitTo:16" ng-click="setCurrentImage(image)">
+						<img class="hotel-thumb" ng-src="{{image.thumbnailUrl}}" width="60">
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+
+	<div id="avail" class="m-b-md">
+		<div id="avail-head"><h2>Choose your room</h2></div>
+		<div id="avail-dates">		
+		<div id="hotel-search-wrapper">
+			<div id="hotel-search" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<div id="hotel-search-form">
+					<section class="container" style="margin-bottom:-12px;" ng-controller="globalController">
+						<form name="destinationSearch" ng-submit="gc.setSearchDestination()">
+						  <fieldset class="form-group">
+							<div class="row">			  
+								  <div class="col-xs-6 col-sm-6 col-lg-2">
+								  	<label class="hotel-sm hp" for="arrivalDate">Arrive</label>
+								    <input id="arrival-date" 			    	
+								    	   class="datepicker form-control" 
+								    	   data-date-format="dd/mm/yyyy" 
+								    	   type="text" 
+								    	   ng-model="achSearch.arrivalDate" 
+								    	   required="required"/>
+								  </div>
+								  
+								  <div class="col-xs-6 col-sm-6 col-lg-2">
+								  	<label class="hotel-sm hp" for="departureDate">Depart</label>
+								    <input id="departure-date" 
+								    	   class="datepicker form-control" 
+								    	   data-date-format="dd/mm/yyyy" 
+								    	   type="text" 
+								    	   ng-model="achSearch.departureDate" 
+								    	   required="required"/>
+								  </div>
+
+								<div class="col-xs-1 col-sm-1 col-lg-1">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Adults</label>
+								    <select class="form-control" name="adults" ng-model="achSearch.numberOfAdults">
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+								    </select>
+								  </fieldset>
+								</div>
+
+								<div class="col-xs-1 col-sm-1 col-lg-1">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Children</label>
+								    <select class="form-control" name="children" ng-model="achSearch.numberOfChildren" ng-change="updateChildren()">
+								      <option value="0">0</option>
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+								    </select>
+								  </fieldset>
+								</div>
+
+								<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child1">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Age(s)</label>
+								    <select class="form-control" name="children" ng-model="achSearch.childAges.child1">
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+									  <option value="5">5</option>
+									  <option value="6">6</option>
+									  <option value="7">7</option>
+									  <option value="8">8</option>
+									  <option value="9">9</option>
+									  <option value="10">10</option>
+									  <option value="11">11</option>
+									  <option value="12">12</option>
+									  <option value="13">13</option>
+									  <option value="14">14</option>
+									  <option value="15">15</option>
+									  <option value="16">16</option>
+									  <option value="17">17</option>
+								    </select>
+								  </fieldset>
+								</div>
+						
+								<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child2">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Age(s)</label>
+								    <select class="form-control" name="children" ng-model="achSearch.childAges.child2">
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+									  <option value="5">5</option>
+									  <option value="6">6</option>
+									  <option value="7">7</option>
+									  <option value="8">8</option>
+									  <option value="9">9</option>
+									  <option value="10">10</option>
+									  <option value="11">11</option>
+									  <option value="12">12</option>
+									  <option value="13">13</option>
+									  <option value="14">14</option>
+									  <option value="15">15</option>
+									  <option value="16">16</option>
+									  <option value="17">17</option>
+								    </select>
+								  </fieldset>
+								</div>
+							
+								<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child3">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Age(s)</label>
+								    <select class="form-control" name="children" ng-model="achSearch.childAges.child3">
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+									  <option value="5">5</option>
+									  <option value="6">6</option>
+									  <option value="7">7</option>
+									  <option value="8">8</option>
+									  <option value="9">9</option>
+									  <option value="10">10</option>
+									  <option value="11">11</option>
+									  <option value="12">12</option>
+									  <option value="13">13</option>
+									  <option value="14">14</option>
+									  <option value="15">15</option>
+									  <option value="16">16</option>
+									  <option value="17">17</option>
+								    </select>
+								  </fieldset>
+								</div>
+
+								<div class="col-xs-1 col-sm-1 col-lg-1" ng-show="child4">
+								  <fieldset class="form-group">
+								    <label class="hotel-sm hp" for="children">Age(s)</label>
+								    <select class="form-control" name="children" ng-model="achSearch.childAges.child4">
+								      <option value="1">1</option>
+									  <option value="2">2</option>
+									  <option value="3">3</option>
+									  <option value="4">4</option>
+									  <option value="5">5</option>
+									  <option value="6">6</option>
+									  <option value="7">7</option>
+									  <option value="8">8</option>
+									  <option value="9">9</option>
+									  <option value="10">10</option>
+									  <option value="11">11</option>
+									  <option value="12">12</option>
+									  <option value="13">13</option>
+									  <option value="14">14</option>
+									  <option value="15">15</option>
+									  <option value="16">16</option>
+									  <option value="17">17</option>
+								    </select>
+								  </fieldset>
+								</div>
+
+						  
+							  <div class="col-xs-12 col-sm-12 col-lg-2">
+							    <button type="submit" class="btn btn-primary btn-block hbm">Change</button>
+							  </div>
+
+							  <br /><br />
+								{{achSearch.childAges.child1}}
+								{{achSearch.childAges.child2}}
+								{{achSearch.childAges.child3}}
+								{{achSearch.childAges.child4}}
+
+
+						  	</div><!-- /row -->
+
+						  </fieldset>	
+						  <input type="hidden" id="destination" value="{{achSearch.destination}}"/>
+						</form>
+					</section>
+				</div>
+			</div>
+		</div>
+
+		</div>
+		<div class="rooms row">
+			<!-- roomData -->
+			<div ng-show="snglRoom" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box">
+				<div class="ach-hotel-box row m-b-sm">
+					
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 ach-hlb-a">
+						<img class="img-responsive" ng-src="{{(roomRateData.RoomImages.RoomImage|| [] ).length ? roomRateData.RoomImages.RoomImage[0].url : 'assets/img/hotel-no-image.gif'}}" />
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 ach-hlb-b">
+						<h3>{{roomRateData.RoomType.description}}</h3>
+						<p class="room-desc">{{roomRateData.BedTypes.BedType.description}}</p>
+							<p class="room-adds">{{roomRateData.ValueAdds.ValueAdd.description}}</p>
+							<div id="value-adds" >
+								<ul ng-repeat="valueAdd in roomRateData.ValueAdds.ValueAdd">
+									<li>{{valueAdd.description}}</li>
+								</ul>
+							</div>
+							<p class="room-sm" ng-bind-html="roomRateData.RateInfos.RateInfo.cancellationPolicy"></p>
+=					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 ach-hlb-c text-xs-center text-md-right">
+						<div class="hlb-g">
+							<h4 class="ach-price">${{roomRateData.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}</h4><br />
+							<span class="ach-sm">(AUD) Total Price</span><br />
+						<a type="button" 
+						   class="ach-hl-btn btn btn-warning" 
+						   ng-click="setHotelBookingDetails(roomRateData, hotel)">
+						   Book now
+						</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<!-- /roomData -->
+			<!-- ng-repeat rooms -->
+			<div ng-show="multiRoom" class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ach-hl-box p-b-2" ng-repeat="room in roomRateData">
+				<div class="ach-hotel-box row m-b-sm">
+					
+					<div class="col-xs-12 col-sm-12 col-md-4 col-lg-3 ach-hlb-a">
+						<img class="img-responsive" ng-src="{{(room.RoomImages.RoomImage|| [] ).length ? room.RoomImages.RoomImage[0].url : 'assets/img/hotel-no-image.gif'}}" />
+					</div>
+					
+					<div class="col-xs-12 col-sm-12 col-md-8 col-lg-7 ach-hlb-b">
+						<h3>{{room.RoomType.description}}</h3>
+						<p class="room-desc">{{room.BedTypes.BedType.description}}</p>
+							<p class="room-adds">{{room.ValueAdds.ValueAdd.description}}</p>
+							<div id="value-adds" >
+								<ul ng-repeat="valueAdd in room.ValueAdds.ValueAdd">
+									<li>{{valueAdd.description}}</li>
+								</ul>
+							</div>
+							<p class="room-sm" ng-bind-html="room.RateInfos.RateInfo.cancellationPolicy"></p>
+					</div>
+
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-2 ach-hlb-c text-xs-center text-md-right">
+						<div class="hlb-g">
+							<h4 class="ach-price">${{room.RateInfos.RateInfo.ChargeableRateInfo['@total'] | number:0}}</h4><br />
+							<span class="ach-sm">(AUD) Total Price</span><br />
+						<a type="button" 
+						   class="ach-hl-btn btn btn-warning" 
+						   ng-click="setHotelBookingDetails(room, hotel)">
+						   Book now
+						</a>
+						</div>
+					</div>	
+				</div>
+			</div>
+			<!-- /ng-repeat rooms -->
+			<p class="room-sm">The room rates listed are for double occupancy per room unless otherwise stated and exclude tax recovery charges and service fees.It is the responsibility of the hotel chain and/or the individual property to ensure the accuracy of the photos displayed. AustralianCheapHotels is not responsible for any inaccuracies in the photos.</p>
+		</div>
+	</div>
+</div>
+<div class="m-b-2"></div>
+<div class="container">
+
+	<!-- Nav tabs -->
+	<ul class="nav nav-tabs" role="tablist">
+	  <li class="nav-item">
+	    <a class="nav-link active" data-toggle="tab" href="#checkInInstructions" role="tab">Checkin instructions</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#propertyInformation" role="tab">Property information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#areaInformation" role="tab">Area information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomInformation" role="tab">Room information</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#hotelPolicy" role="tab">Hotel Policy</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomDetailDescription" role="tab">Room description</a>
+	  </li>
+	  <li class="nav-item">
+	    <a class="nav-link" data-toggle="tab" href="#roomFees" role="tab">Room fees</a>
+	  </li>
+	</ul>
+
+	<!-- Tab panes -->
+	<div class="tab-content">
+	  <div class="tab-pane active" id="checkInInstructions" role="tabpanel" ng-bind-html="hotelDetails.checkInInstructions"></div>
+	  <div class="tab-pane" id="propertyInformation" role="tabpanel" ng-bind-html="hotelDetails.propertyInformation"></div>
+	  <div class="tab-pane" id="areaInformation" role="tabpanel" ng-bind-html="hotelDetails.areaInformation | to_trusted"></div>
+	  <div class="tab-pane" id="roomInformation" role="tabpanel" ng-bind="hotelDetails.roomInformation"></div>
+	   <div class="tab-pane" id="hotelPolicy" role="tabpanel" ng-bind-html="hotelDetails.hotelPolicy"></div>
+	    <div class="tab-pane" id="roomDetailDescription" role="tabpanel" ng-bind-html="hotelDetails.roomDetailDescription"></div>
+	    <div class="tab-pane" id="roomFees" role="tabpanel" ng-bind-html="hotelDetails.roomFeesDescription"></div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<pre>{{hotelDetails | json}}</pre>

@@ -14,6 +14,7 @@ module.exports = function(grunt) {
       }
     },
 
+    
     connect: {
       options: {
         port: 8080,
@@ -39,6 +40,7 @@ module.exports = function(grunt) {
       }
     },
 
+    
     watch: {
       options: {
         livereload: true,
@@ -55,58 +57,139 @@ module.exports = function(grunt) {
       }
     },
 
-    //Tasks for distribution
-    // copy:{
-    //   dist:{
-    //     files: [
-    //       {nonull: true, expand: true, cwd: 'src', src: 'index.html', dest: 'dist'},
-    //       {nonull: true, expand: true, cwd: 'src', src: 'eanapi/**', dest: 'dist'},
-    //     ],
-    //   },  
-    // },
-
+    
     clean: {
-        src: ['dist/index.html']
+        src: ['dist/index.html', 'dist/app', 'dist/eanapi', 'dist/assets']
     },
 
 
-    copy: {
-        dist: {
+    copy: {     
+        core: {
             files: [{
                 expand: true,
                 cwd: 'src',
                 src: [
-                    'index.html',
                     'eanapi/*'
-                    //'foo/*.{png,jpg}',
-                    //'foo/*.{png,jpg}',
                 ],
                 dest: 'dist'
             }],
         },
+        
+        shared:{
+            files: [{
+                expand: true,
+                cwd: 'src/app/shared',
+                src: [
+                    '**/*.html',
+                ],
+                dest: 'dist/app/shared'
+            }],
+        },
+        
+        components:{
+            files: [{
+                expand: true,
+                cwd: 'src/app/components',
+                src: [
+                    '**/*.html',
+                ],
+                dest: 'dist/app/components'
+            }],
+        },
+
+        img:{
+            files: [{
+                expand: true,
+                cwd: 'src/assets/img',
+                src: [
+                    '**',
+                ],
+                dest: 'dist/assets/img'
+            }],
+        },
     },
 
+    
     cssmin: {
-      target: {
+      main: {
         files: [{
           expand: true,
-          cwd: 'release/css',
+          cwd: 'src/assets/css',
           src: ['*.css', '!*.min.css'],
-          dest: 'release/css',
+          dest: 'dist/assets/css',
           ext: '.min.css'
         }]
-      }
+      },
+      octicons: {
+        files: [{
+          expand: true,
+          cwd: 'src/assets/libs/octicons/octicons/',
+          src: ['*.css'],
+          dest: 'dist/assets/css',
+          ext: '.min.css'
+        }]
+      },
     },
 
+
+    uglify: {
+        app: {
+          files: {
+            'dist/app/app.min.js': ['src/app/app.js']
+          },
+        },
+        // siteconfig: {
+        //   files: {
+        //     'dist/assets/js/main.min.js': ['src/assets/js/**.js']
+        //   },  
+        // },
+        ngfiles: {
+            files: {
+              'dist/app/js/main.min.js': ['src/assets/js/**.js', 'src/app/shared/**/**.js','src/app/components/**/**.js']
+            },  
+        },
+        // vendorjs: {
+        //     files: {
+        //       'dist/app/js/vendor.min.js': 
+        //         [
+        //           'src/assets/libs/jquery/dist/jquery.min.js', 
+        //           'src/assets/libs/tether/dist/js/tether.min.js',
+        //           'src/assets/libs/bootstrap/dist/js/bootstrap.min.js',
+        //           'src/assets/libs/angular/angular.min.js',
+        //           'src/assets/libs/angular-ui-router/release/angular-ui-router.min.js',
+        //           'src/assets/libs/angular-sanitize/angular-sanitize.min.js',
+        //           'src/assets/libs/ngstorage/ngStorage.min.js',
+        //           'src/assets/libs/angular-spinners/dist/angular-spinners.min.js',
+        //           'src/assets/libs/angular-slugify/angular-slugify.js',
+        //           'src/assets/libs/angular-auto-validate/dist/jcs-auto-validate.min.js',
+        //           'src/assets/libs/angular-guid/guid.min.js',
+        //           ]
+        //     },  
+        // },
+    },
+
+
+   processhtml: {
+        build: {
+            nonull: true,
+            files: {
+                'dist/index.html' : ['src/index.html'],
+            }
+        }
+    },
+  
   });
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
 
-
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-processhtml');
+
  
 
 
@@ -114,7 +197,8 @@ module.exports = function(grunt) {
   grunt.registerTask('server', ['connect','watch']);
 
   //Run the distribution
-  grunt.registerTask('dist', ['clean', 'copy']);
+  //grunt.registerTask('dist', ['clean', 'copy', 'cssmin', 'uglify', 'processhtml']);
+  grunt.registerTask('dist', ['clean','cssmin', 'uglify', 'processhtml', 'copy']);
 
 
 

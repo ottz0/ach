@@ -73,14 +73,6 @@
 			
 			var reservationData = $httpParamSerializer(RequestParameters)+'&'+$httpParamSerializer(reservationForm);
 
-
-			//return console.log(reservationData);
-
-
-
-
-
-
 			return factory.eanApiBookingRequest(reservationData);
 		};
 		
@@ -105,6 +97,8 @@
 
 	return factory;
 	}; // /factory
+
+	bookFactory.$inject = ['$http', '$stateParams', '$httpParamSerializer', '$sessionStorage', 'utilsFactory'];
 
 
 	//Register the object with Angular.js

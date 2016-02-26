@@ -83,6 +83,8 @@
 	}; // /factory
 
 
+	hotelFactory.$inject = ['$http', '$location', '$stateParams', '$sessionStorage', 'utilsFactory'];
+	
 	//Register the object with Angular.js
     angular.module('achApp')
         .factory('hotelFactory', hotelFactory);

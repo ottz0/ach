@@ -9,8 +9,8 @@
         
         <title ng-bind="$state.current.data.pageTitle"></title>
 
-    <link rel="stylesheet" href="assets/css/ach-main.min.css"/>
-    <link rel="stylesheet" href="assets/css/octicons.min.css"/>
+        <link rel="stylesheet" href="assets/css/ach-main.min.css"/>
+        <link rel="stylesheet" href="assets/css/octicons.min.css"/>
 
     </head>
     <body ng-cloak ng-controller="globalController as gc">
@@ -34,28 +34,9 @@
     <div ng-include src="'app/components/core/footer.html'"></div>
     <!-- /footer -->
 
-    <!-- jQuery first, then Bootstrap JS. -->
-        <script src="assets/libs/jquery/dist/jquery.min.js"></script>
-        <script src="assets/libs/tether/dist/js/tether.min.js"></script>
-        <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    
-        <!-- Angular Components-->
-        <script src="assets/libs/angular/angular.js"></script>
-        <script src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="assets/libs/angular-sanitize/angular-sanitize.js"></script>
-        <script src="assets/libs/ngstorage/ngStorage.min.js"></script>
-        <script src="assets/libs/angular-spinners/dist/angular-spinners.min.js"></script>
-        <script src="assets/libs/angular-slugify/angular-slugify.js"></script>
-        <script src="assets/libs/angular-auto-validate/dist/jcs-auto-validate.js"></script>
-        <script src="assets/libs/angular-guid/guid.min.js"></script>
-        <script src="assets/libs/ngmap/build/scripts/ng-map.min.js"></script>
-        <script src="assets/js/google.js"></script>
-        <script src="assets/js/bootstrap-datepicker.js"></script>
+    <script src="app/js/vendor.min.js"></script>
 
-
-
-
-    <script src="app/app.js"></script>
+    <script src="app/app.min.js"></script>
         
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
         

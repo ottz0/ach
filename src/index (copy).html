@@ -40,16 +40,13 @@
     <div ng-include src="'app/components/core/footer.html'"></div>
     <!-- /footer -->
 
-        <!-- build:js app/js/vendor.min.js -->
-        <!-- Non angular vendors Concat-->
+    <!-- build:js app/js/vendor.min.js -->
+        <!-- jQuery first, then Bootstrap JS. -->
         <script src="assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="assets/libs/tether/dist/js/tether.min.js"></script>
         <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- /build -->
-
-
-        <!-- build:js app/app.min.js -->
-        <!-- Angular core -->
+    
+        <!-- Angular Components-->
         <script src="assets/libs/angular/angular.js"></script>
         <script src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
         <script src="assets/libs/angular-sanitize/angular-sanitize.js"></script>
@@ -59,24 +56,21 @@
         <script src="assets/libs/angular-auto-validate/dist/jcs-auto-validate.js"></script>
         <script src="assets/libs/angular-guid/guid.min.js"></script>
         <script src="assets/libs/ngmap/build/scripts/ng-map.min.js"></script>
-        <!-- /build -->
-
-
-        <!-- build:js app/app.min.js -->
-        <!-- Js main -->
         <script src="assets/js/google.js"></script>
         <script src="assets/js/bootstrap-datepicker.js"></script>
-        <script src="assets/js/ach-site.js"></script>
-        <!-- /build -->
-        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
+    <!-- /build -->
 
-        <!-- build:js app/app.min.js -->
+    <!-- build:js app/app.min.js -->
         <script src="app/app.js"></script>
-        <!-- /build -->
+    <!-- /build -->
         
+        <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
         
-        <!-- build:js app/js/main.min.js -->
+    <!-- build:js app/js/main.min.js -->
+        <!-- Site-->
+        <script src="assets/js/ach-site.js"></script>
+
         <!-- Shared-->
         <script src="app/shared/globalController.js"></script>
         <script src="app/components/core/navController.js"></script>
@@ -117,7 +111,7 @@
         <!-- Devb-->
         <script src="app/components/devb/devbController.js"></script>
         <script src="app/components/devb/devbFactory.js"></script>
-        <!-- /build -->
+    <!-- /build -->
 
 
 

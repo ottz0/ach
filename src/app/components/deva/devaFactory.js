@@ -18,7 +18,7 @@
 	return factory;
 	}; // /factory
 
-
+	devaFactory.$inject = ['$http'];
 	//Register the object with Angular.js
     angular.module('achApp')
         .factory('devaFactory', devaFactory);

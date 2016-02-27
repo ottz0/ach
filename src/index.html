@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="achApp">
     <head>
-        <!-- Required meta tags always come first -->
-        <meta charset="utf-8">
         <base href="/">
+        <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         
@@ -13,8 +12,7 @@
         <!-- Ach Stylesheet -->
         <link rel="stylesheet" href="assets/css/ach-main.css">
         <!-- /build -->
-        <!-- build:css assets/css/octicons.min.css -->
-        <!-- Ach Stylesheet -->
+        <!-- build:css assets/fonts/octicons/octicons/octicons.min.css -->
         <link rel="stylesheet" href="assets/libs/octicons/octicons/octicons.css">
         <!-- /build -->
 
@@ -41,43 +39,41 @@
     <!-- /footer -->
 
         <!-- build:js app/js/vendor.min.js -->
-        <!-- Non angular vendors Concat-->
+        <!-- Non angular vendors-->
         <script src="assets/libs/jquery/dist/jquery.min.js"></script>
         <script src="assets/libs/tether/dist/js/tether.min.js"></script>
         <script src="assets/libs/bootstrap/dist/js/bootstrap.min.js"></script>
         <!-- /build -->
 
-
-        <!-- build:js app/app.min.js -->
-        <!-- Angular core -->
+        <!-- build:js app/js/angular.min.js -->
         <script src="assets/libs/angular/angular.js"></script>
-        <script src="assets/libs/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="assets/libs/angular-sanitize/angular-sanitize.js"></script>
+        <!-- /build -->
+        
+        
+        <!-- build:js app/js/angular-components.min.js -->
+        <script src="assets/libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+        <script src="assets/libs/angular-sanitize/angular-sanitize.min.js"></script>
         <script src="assets/libs/ngstorage/ngStorage.min.js"></script>
         <script src="assets/libs/angular-spinners/dist/angular-spinners.min.js"></script>
         <script src="assets/libs/angular-slugify/angular-slugify.js"></script>
-        <script src="assets/libs/angular-auto-validate/dist/jcs-auto-validate.js"></script>
+        <script src="assets/libs/angular-auto-validate/dist/jcs-auto-validate.min.js"></script>
         <script src="assets/libs/angular-guid/guid.min.js"></script>
         <script src="assets/libs/ngmap/build/scripts/ng-map.min.js"></script>
         <!-- /build -->
 
-
-        <!-- build:js app/app.min.js -->
-        <!-- Js main -->
+        <!-- build:js app/js/ach-site.min.js -->
+        <!-- site js -->
         <script src="assets/js/google.js"></script>
-        <script src="assets/js/bootstrap-datepicker.js"></script>
         <script src="assets/js/ach-site.js"></script>
+        <script src="assets/js/bootstrap-datepicker.js"></script>
         <!-- /build -->
+        
+
         <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 
-
-        <!-- build:js app/app.min.js -->
-        <script src="app/app.js"></script>
-        <!-- /build -->
-        
-        
-        <!-- build:js app/js/main.min.js -->
+        <!-- build:js app/js/angular-app.min.js -->
         <!-- Shared-->
+        <script src="app/app.js"></script>
         <script src="app/shared/globalController.js"></script>
         <script src="app/components/core/navController.js"></script>
         <script src="app/shared/config.js"></script>
@@ -117,11 +113,7 @@
         <!-- Devb-->
         <script src="app/components/devb/devbController.js"></script>
         <script src="app/components/devb/devbFactory.js"></script>
-        <!-- /build -->
-
-
-
-        
+        <!-- /build -->   
 
     </body>
 </html>

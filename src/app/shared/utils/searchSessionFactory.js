@@ -10,6 +10,7 @@
 	return factory;
 	};
 
+	searchSessionFactory.$inject = ['$sessionStorage'];
 	//Register the object with Angular.js
     angular.module('achApp')
         .factory('searchSessionFactory', searchSessionFactory);

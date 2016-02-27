@@ -2,7 +2,7 @@
 
 	var app = angular.module('achApp', ['ui.router', 'ngStorage', 'ngSanitize', 'angularSpinners', 'slugifier', 'ngMap', 'ngGuid']);
 
-	app.config(function ($stateProvider, $locationProvider) {
+	app.config(['$stateProvider', '$locationProvider', function($stateProvider, $locationProvider) {
 
         $stateProvider
 			.state('index',
@@ -74,7 +74,7 @@
 
         $locationProvider.html5Mode(true);
             
-    })
+    }])
 
     //Load title into page
    .run([ '$rootScope', '$state', '$stateParams', function ($rootScope, $state, $stateParams) {

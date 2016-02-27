@@ -28,15 +28,15 @@ module.exports = function(grunt) {
         },
 
         // MODIFIED: Add this middleware configuration
-          middleware: function(connect, options) {
-            var middlewares = [];
+          // middleware: function(connect, options) {
+          //   var middlewares = [];
 
-            middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
-            options.base.forEach(function(base) {
-              middlewares.push(connect.static(base));
-            });
-            return middlewares;
-          }
+          //   middlewares.push(modRewrite(['^[^\\.]*$ /index.html [L]'])); //Matches everything that does not contain a '.' (period)
+          //   options.base.forEach(function(base) {
+          //     middlewares.push(connect.static(base));
+          //   });
+          //   return middlewares;
+          // }
       }
     },
 
@@ -63,7 +63,8 @@ module.exports = function(grunt) {
     },
 
 
-    copy: {     
+    copy: { 
+
         core: {
             files: [{
                 expand: true,
@@ -74,7 +75,7 @@ module.exports = function(grunt) {
                 dest: 'dist'
             }],
         },
-        
+
         shared:{
             files: [{
                 expand: true,
@@ -107,6 +108,31 @@ module.exports = function(grunt) {
                 dest: 'dist/assets/img'
             }],
         },
+
+        octicons:{
+            files: [{
+                expand: true,
+                cwd: 'src/assets/libs/octicons/octicons',
+                src: [
+                    'octicons-local.ttf',
+                    'octicons.eot',
+                    'octicons.ttf',
+                    'octicons.svg',
+                    'octicons.ttf',
+                    'octicons.woff',
+                ],
+                dest: 'dist/assets/fonts/octicons/octicons'
+            }],
+        },
+
+        octiconsSvg:{
+            files: [{
+                expand: true,
+                cwd: 'src/assets/libs/octicons/svg',
+                src: ['**.svg',],
+                dest: 'dist/assets/fonts/octicons/svg'
+            }],
+        },
     },
 
     
@@ -120,52 +146,79 @@ module.exports = function(grunt) {
           ext: '.min.css'
         }]
       },
+
       octicons: {
         files: [{
           expand: true,
-          cwd: 'src/assets/libs/octicons/octicons/',
-          src: ['*.css'],
-          dest: 'dist/assets/css',
+          cwd: 'src/assets/libs/octicons/octicons',
+          src: ['octicons.css'],
+          dest: 'dist/assets/fonts/octicons/octicons',
           ext: '.min.css'
         }]
       },
+      
     },
 
-
+    
     uglify: {
-        app: {
+        vendor: {
           files: {
-            'dist/app/app.min.js': ['src/app/app.js']
+            'dist/app/js/vendor.min.js': 
+                [
+                  'src/assets/libs/jquery/dist/jquery.min.js',
+                  'src/assets/libs/tether/dist/js/tether.min.js',
+                  'src/assets/libs/bootstrap/dist/js/bootstrap.min.js',
+                ]
           },
         },
-        // siteconfig: {
-        //   files: {
-        //     'dist/assets/js/main.min.js': ['src/assets/js/**.js']
-        //   },  
-        // },
-        ngfiles: {
+
+        angular: {
+          files: {
+            'dist/app/js/angular.min.js': 
+                [
+                  'src/assets/libs/angular/angular.min.js',
+                ]
+          },
+        },
+
+        achSite: {
+          files: {
+            'dist/app/js/ach-site.min.js': 
+                [
+                  'src/assets/js/google.js',
+                  'src/assets/js/ach-site.js',
+                  'src/assets/js/bootstrap-datepicker.js',
+                ]
+          },
+        },
+
+        angularComponents: {
+          files: {
+            'dist/app/js/angular-components.min.js': 
+                [
+                  'src/assets/libs/angular-ui-router/release/angular-ui-router.min.js',
+                  'src/assets/libs/angular-sanitize/angular-sanitize.min.js',
+                  'src/assets/libs/ngstorage/ngStorage.min.js',
+                  'src/assets/libs/angular-spinners/dist/angular-spinners.min.js',
+                  'src/assets/libs/angular-slugify/angular-slugify.js',
+                  'src/assets/libs/angular-auto-validate/dist/jcs-auto-validate.min.js',
+                  'src/assets/libs/angular-guid/guid.min.js',
+                  'src/assets/libs/ngmap/build/scripts/ng-map.min.js',
+                ]
+          },
+        },
+        
+        angularApp: {
             files: {
-              'dist/app/js/main.min.js': ['src/assets/js/**.js', 'src/app/shared/**/**.js','src/app/components/**/**.js']
+              'dist/app/js/angular-app.min.js': 
+                  [
+                    'src/app/app.js', 
+                    'src/assets/js/**.js', 
+                    'src/app/shared/**/**.js',
+                    'src/app/components/**/**.js'
+                  ]
             },  
         },
-        // vendorjs: {
-        //     files: {
-        //       'dist/app/js/vendor.min.js': 
-        //         [
-        //           'src/assets/libs/jquery/dist/jquery.min.js', 
-        //           'src/assets/libs/tether/dist/js/tether.min.js',
-        //           'src/assets/libs/bootstrap/dist/js/bootstrap.min.js',
-        //           'src/assets/libs/angular/angular.min.js',
-        //           'src/assets/libs/angular-ui-router/release/angular-ui-router.min.js',
-        //           'src/assets/libs/angular-sanitize/angular-sanitize.min.js',
-        //           'src/assets/libs/ngstorage/ngStorage.min.js',
-        //           'src/assets/libs/angular-spinners/dist/angular-spinners.min.js',
-        //           'src/assets/libs/angular-slugify/angular-slugify.js',
-        //           'src/assets/libs/angular-auto-validate/dist/jcs-auto-validate.min.js',
-        //           'src/assets/libs/angular-guid/guid.min.js',
-        //           ]
-        //     },  
-        // },
     },
 
 
@@ -198,7 +251,7 @@ module.exports = function(grunt) {
 
   //Run the distribution
   //grunt.registerTask('dist', ['clean', 'copy', 'cssmin', 'uglify', 'processhtml']);
-  grunt.registerTask('dist', ['clean','cssmin', 'uglify', 'processhtml', 'copy']);
+  grunt.registerTask('dist', ['clean', 'uglify', 'processhtml', 'copy', 'cssmin']);
 
 
 

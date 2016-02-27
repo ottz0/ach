@@ -38,7 +38,7 @@
 		return factory;
 	}; // /SearchFactory
 	
-
+	searchFactory.$inject = ['$scope', '$state'];
 	//Register the object with Angular.js
     angular.module('achApp')
         .factory('searchFactory', searchFactory);

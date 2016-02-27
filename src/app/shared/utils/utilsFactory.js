@@ -19,14 +19,12 @@
 		factory.changeRating = function(hotelRating){
 			return hotelRatingFactory.getHotelRating(hotelRating);
 		};
-
-		factory.myTestResponse = function(){
-			return {FirstName: ''};
-		};
 		
 		return factory;	
 	};
 
+	
+	utilsFactory.$inject = ['dateFactory', 'searchSessionFactory', 'stateFactory', 'hotelRatingFactory'];
 	//Register the object with Angular.js
     angular.module('achApp')
         .factory('utilsFactory', utilsFactory);
